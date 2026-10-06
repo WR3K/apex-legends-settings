@@ -30,12 +30,11 @@ A guide for anyone who wants Apex to feel better, even if they've never opened a
 
 | File | What it's for | Copy / download |
 | --- | --- | --- |
-| [autoexec.cfg](autoexec.cfg) | Optional startup settings | [Raw file](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/autoexec.cfg) |
 | [settings.cfg](settings.cfg) | Mouse-acceleration preference | [Raw file](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/settings.cfg) |
 | [videoconfig.txt](videoconfig.txt) | A few graphics settings | [Raw file](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/videoconfig.txt) |
 | [profile.cfg](profile.cfg) | ADS blur preference | [Raw file](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/profile.cfg) |
 
-The files haven't been tested in a running Apex client for this guide. Autoexec is optional; check its [support note](#autoexec-status) before using it.
+These three downloads contain suggested settings, not complete replacement files. They haven't been tested in a running Apex client for this guide.
 
 <a id="file-locations"></a>
 
@@ -44,16 +43,13 @@ The files haven't been tested in a running Apex client for this guide. Autoexec 
 
 | File | Exact destination |
 | --- | --- |
-| `autoexec.cfg` | `<Apex installation>\cfg\autoexec.cfg` |
 | `settings.cfg` | `%USERPROFILE%\Saved Games\Respawn\Apex\local\settings.cfg` |
 | `videoconfig.txt` | `%USERPROFILE%\Saved Games\Respawn\Apex\local\videoconfig.txt` |
 | `profile.cfg` | `%USERPROFILE%\Saved Games\Respawn\Apex\profile\profile.cfg` |
 
-`<Apex installation>` means the folder Steam opens through **Manage → Browse local files**, or the EA app's install-location control. Don't paste those angle brackets into Windows Run.
-
 The Saved Games paths can be pasted into **Windows + R**. If that folder was moved, use `shell:SavedGames` and look for `Respawn\Apex` instead.
 
-Already have an autoexec? Back it up and merge only the lines you want. The other three downloads are snippets to merge into your existing files, not complete files to copy over them. `profile.cfg` is an Apex file, not an NVIDIA driver profile.
+All three downloads are snippets to merge into the files Apex creates in Saved Games, not complete files to copy over them. `profile.cfg` is an Apex file, not an NVIDIA driver profile.
 
 Need the full walkthrough? Open [Finding files, Notepad, and read-only](#beginners).
 
@@ -67,7 +63,7 @@ Need the full walkthrough? Open [Finding files, Notepad, and read-only](#beginne
 | --- | --- |
 | **1 · Back up** | Run Apex once, close it, then back up the files you plan to edit. Take screenshots of your current settings. [File help](#beginners) |
 | **2 · Start in game** | Apply the [in-game settings](#in-game), then choose your [G-SYNC/V-Sync setup and FPS cap](#nvidia). Play a little before adding more changes |
-| **3 · Edit what you need** | Use the [video](#video-config) and [settings/profile](#saved-configs) snippets only where matching lines exist. Autoexec is optional; [check support first](#autoexec-status) |
+| **3 · Edit what you need** | Use the [video](#video-config) and [settings/profile](#saved-configs) snippets only where matching lines exist. |
 | **4 · Restart and compare** | Fully restart Apex and [test the difference](#validation). Keep what helps; undo what doesn't |
 
 No installer or Windows tweak pack required.
@@ -102,7 +98,7 @@ A config file is just a text file with settings in it. You can open it in Notepa
 | G-SYNC / FreeSync | Features that let a compatible monitor adjust refresh timing to frame delivery; collectively called variable refresh rate (VRR) |
 | V-Sync | Controls frame presentation to prevent tearing; its latency tradeoff depends on the setup |
 | Reflex | NVIDIA's supported in-game feature for reducing rendering-related latency |
-| Autoexec / `.cfg` | A text file containing commands the game attempts to run at startup |
+| `.cfg` file | A text file containing settings; edit the existing file in Notepad and preserve its filename |
 | Video config | The game's saved graphics settings, stored separately from its installed files |
 | DoF / ADS | Depth of field (focus blur) / aiming down sights |
 
@@ -112,15 +108,7 @@ On this repository's GitHub page, choose **Code → Download ZIP**. In File Expl
 
 ### Show filename extensions
 
-Open File Explorer with **Windows + E**. On Windows 11 choose **View → Show → File name extensions**; on Windows 10 use **View → File name extensions**. This lets you distinguish `autoexec.cfg` from the incorrect `autoexec.cfg.txt`.
-
-### Find the installed game files
-
-**Steam:** Open Steam → **Library** → right-click **Apex Legends** → **Manage → Browse local files**. Alternatively use **Properties → Installed Files → Browse**. File Explorer opens the actual installation, even if you installed on a different drive. Open its **cfg** folder. This is where `autoexec.cfg` goes.
-
-**EA app:** Open the Library, select Apex, and look for **Manage / View properties** and the installation location. Use **Browse** if offered, or open the displayed path in File Explorer. Labels vary by EA app version. Open the **cfg** folder inside that installation.
-
-Do not guess a Steam drive letter or put the autoexec in the Windows Saved Games folder. If `cfg` is missing, first confirm you are in the folder containing the game's executable; create a folder named `cfg` there only if necessary.
+Open File Explorer with **Windows + E**. On Windows 11 choose **View → Show → File name extensions**; on Windows 10 use **View → File name extensions**. This lets you distinguish `settings.cfg` from the incorrect `settings.cfg.txt`.
 
 ### Find your saved video settings
 
@@ -135,17 +123,17 @@ Do not guess a Steam drive letter or put the autoexec in the Windows Saved Games
 4. Find `videoconfig.txt`. `%USERPROFILE%` expands to your Windows user folder; you do not need to type your username.
 5. If the folder is missing, use **Windows + R → `shell:SavedGames`** and look for **Respawn → Apex → local**. Saved Games may have been relocated. Confirm you have launched Apex under this Windows account.
 
-There are three destination folders: the install's `cfg` folder holds autoexec; Saved Games `local` holds settings/video config; Saved Games `profile` holds profile.cfg. See the [destination table](#downloads).
+There are two destination folders: Saved Games `local` holds settings/video config, and Saved Games `profile` holds profile.cfg. See the [destination table](#downloads).
 
 ### Back up and open files in Notepad
 
 1. Close Apex. Copy each original file to a separate backup folder, such as `Documents\Apex-settings-backup`. Keep a screenshot or text copy of your existing launch options too.
 2. Right-click the file → **Open with → Notepad**. Windows 11 may show **Show more options**, **Edit in Notepad**, or **Choose another app** first.
-3. Edit only the intended lines. Preserve quotation marks and braces. Lines beginning with `//` in the downloadable autoexec are comments; they do not execute.
+3. Edit only the intended lines. Preserve quotation marks and braces. Lines beginning with `//` in the snippets are comments explaining the settings.
 4. Press **Ctrl + S**. If saving fails, check the file's read-only attribute using the next section; do not change folder permissions blindly.
-5. To create a new autoexec in Notepad, choose **File → Save As**, set **Save as type: All files**, and enter `autoexec.cfg`. Use UTF-8, then verify the final filename in File Explorer.
+5. Edit the existing game-generated file rather than creating a replacement. If using **Save As**, choose **All files** and keep the original filename and extension. Verify it in File Explorer afterward.
 
-Already have an autoexec? Keep a backup and add only the lines you want to change. Don't overwrite your binds or personal preferences. For video settings, follow the [merge guide](#video-config): the repository's `videoconfig.txt` is deliberately incomplete and must not replace your full file.
+Keep your original files and edit only the matching lines. Don't overwrite your binds or personal preferences. For video settings, follow the [merge guide](#video-config): the repository's `videoconfig.txt` is deliberately incomplete and must not replace your full file.
 
 ### Optional: set or remove read-only
 
@@ -156,13 +144,13 @@ Leave Read-only unticked while you work out which settings you want. Once you're
 3. On **General**, under **Attributes**, tick **Read-only**.
 4. Click **Apply → OK**. To edit or save new permanent settings later, untick it and click **Apply → OK** first.
 
-Use the file's checkbox, not the folder's checkbox. Do not mark the entire Apex folder read-only. An autoexec normally only needs to be read by the game; making it read-only is usually unnecessary.
+Use the file's checkbox, not the folder's checkbox. Do not mark the entire Apex folder read-only.
 
 #### What happens if you Apply graphics settings in game?
 
-**Read-only protects the file on disk; it does not lock live settings in the running game.** Pressing Apply can change graphics for the current session even if those values cannot be written to the read-only video config. A menu change can also supersede an overlapping value previously set by autoexec. This does not mean the game edited the autoexec itself.
+**Read-only protects the file on disk; it does not lock live settings in the running game.** Pressing Apply can change graphics for the current session even if those values cannot be written to the read-only video config.
 
-After a full restart, Apex normally reads its saved files again and tries to run any startup autoexec you set. That doesn't guarantee every value comes back exactly as expected: some commands may no longer work, another settings file may override them, or cloud sync may restore different values. Check what actually loads.
+After a full restart, Apex normally reads its saved files again. That doesn't guarantee every value comes back exactly as expected: some commands may no longer work, another settings file may override them, or cloud sync may restore different values. Check what actually loads.
 
 For a permanent change: close the game, remove read-only, edit the relevant file or apply settings in game, exit normally, inspect the saved values, and test another launch. Re-enable read-only only if you still want it. Remove read-only before troubleshooting resolution changes or letting a game update migrate the config schema.
 
@@ -233,32 +221,6 @@ Once you're happy with the settings, you can use the [optional read-only steps](
 
 </details>
 
-<a id="autoexec-status"></a>
-
-<details>
-<summary><strong>Does autoexec still work?</strong></summary>
-
-**Update: 7 October 2026 — startup autoexec support is still unverified for this guide. It has not been confirmed removed.**
-
-The linked Reddit discussion says that binds used to reload an `exec` file **while the game is running** stopped working. That is different from loading `autoexec.cfg` **when Apex starts**. The reference repository still describes startup loading, but that isn't a current in-game test.
-
-The file stays available as an optional download. Its active settings are also in the game menus, so you can skip it and still use the rest of this guide. The ADS blur setting is in the `profile.cfg` snippet and doesn't need autoexec to run.
-
-Before relying on it, use the [loading check](#validation). A file loading successfully doesn't mean every command in it still works—Apex updates can change that.
-
-### If it doesn't load
-
-1. Check the install folder, filename, and launch options first. `autoexec.cfg.txt` is the wrong filename.
-2. If it still won't load, close Apex and remove `+exec autoexec.cfg` from Steam/EA launch options. Keep your FPS cap. For the 170 FPS example, that leaves `+fps_max 170`.
-3. Move the added autoexec into your backup folder. If you merged it with an older file, restore that original instead.
-4. Set **FOV Ability Scaling → Disabled** and **Sprint View Shake → Minimal** in the game menu, then restart.
-
-Don't add reload binds or chain `exec` commands through the other settings files to try to force it. A blocked or removed command won't become supported just because it's in a different file. If reporting a problem, include the game version and what happened during the loading check.
-
-[Back to guides](#contents)
-
-</details>
-
 <a id="steam"></a>
 
 <details>
@@ -266,23 +228,11 @@ Don't add reload binds or chain `exec` commands through the other settings files
 
 In Steam, right-click **Apex Legends → Properties → General**. Find **Launch Options** and save a copy of anything already in the box.
 
-If you're using the optional autoexec, first put it in **Manage → Browse local files → cfg**, then add:
-
-```text
-+exec autoexec.cfg
-```
-
 ### Adding an FPS cap
 
-`+fps_max` tells the game the highest FPS you want it to render. It doesn't guarantee your PC can hold that number.
+`+fps_max` sets the highest FPS the game should try to render. It doesn't guarantee the PC can hold that number.
 
 For the example 170 FPS setup:
-
-```text
-+exec autoexec.cfg +fps_max 170
-```
-
-If you're skipping autoexec, just use:
 
 ```text
 +fps_max 170
@@ -290,17 +240,17 @@ If you're skipping autoexec, just use:
 
 Replace 170 with the target you chose in the [FPS-cap guide](#nvidia). For example, 141 FPS is one starting point for a 144 Hz screen with G-SYNC enabled and driver V-Sync on. It isn't the right cap for every PC.
 
-If the cap is set here, leave `fps_max` commented out in autoexec and the driver's Max Frame Rate setting off. Keeping it in one place makes troubleshooting much easier.
+Keep the driver's Max Frame Rate setting off when using this cap. Setting the cap in one place makes troubleshooting easier.
 
 ### Skipping the intro
 
 The Reddit comments suggest `-novid` after reporting that `-dev` stopped skipping the intro. You can try:
 
 ```text
--novid +exec autoexec.cfg +fps_max 170
+-novid +fps_max 170
 ```
 
-Keep only the parts you're using. Intro skipping is a startup convenience, not an FPS tweak. If the game ignores `-novid`, remove it.
+Intro skipping is optional, not an FPS tweak. If the game ignores `-novid`, remove it.
 
 Leave `-high`, `-threads`, old renderer flags, and network overrides out of the starting setup. There's no demonstrated benefit for your PC just because another guide lists them.
 
@@ -313,23 +263,15 @@ Leave `-high`, `-threads`, old renderer flags, and network overrides out of the 
 <details>
 <summary><strong>EA app launch options</strong></summary>
 
-Open Apex's game properties/manage menu in the EA app. Find the installation location and open its `cfg` folder if you're using autoexec. Back up an existing autoexec before merging any lines.
+Open Apex's game properties/manage menu in the EA app. Find **Advanced launch options** or the similarly named field and save a copy of the existing arguments.
 
-In the game properties, find **Advanced launch options** or the similarly named field. Save a copy of the old arguments, then use the same starting command:
-
-```text
-+exec autoexec.cfg
-```
-
-To include an example 170 FPS cap:
+To set an example 170 FPS cap, enter:
 
 ```text
-+exec autoexec.cfg +fps_max 170
++fps_max 170
 ```
 
-Choose your own cap using the [FPS-cap guide](#nvidia). If you don't use autoexec, remove `+exec autoexec.cfg` and keep only the cap. If the cap is set in launch options, leave it commented out in autoexec.
-
-The upstream guide lists `-exec` for EA. That launcher-specific difference hasn't been verified, so this guide uses the usual engine command `+exec` and asks you to [check that it loads](#validation).
+Choose your own cap using the [FPS-cap guide](#nvidia). Keep the driver's Max Frame Rate setting off when using the game cap.
 
 You can also try `-novid` for intro skipping, as reported in the Reddit comments. It's optional, isn't verified here, and doesn't improve in-match FPS. EA app menu names can change between versions.
 
@@ -414,7 +356,7 @@ Use a cap that gives repeatable, stable frame times on that PC. There is no auto
 
 If **G-SYNC/FreeSync is enabled but V-Sync is off**, the monitor can still adjust its refresh rate within its supported range. You may still see tearing, especially near the limits of that range. That's different from turning G-SYNC/FreeSync off completely. If both features are disabled and tearing is unacceptable, consider supported G-SYNC/FreeSync or ordinary V-Sync with its latency tradeoff.
 
-Use `fps_max` in the autoexec **or** `+fps_max N` in launch options, not both. Leave driver Max Frame Rate and third-party limiters off when testing the game cap. If Reflex already limits below the chosen target, that lower observed rate can be expected.
+Use `+fps_max N` in the launcher, replacing `N` with the chosen FPS cap. Leave driver Max Frame Rate and third-party limiters off when testing the game cap. If Reflex already limits below the chosen target, that lower observed rate can be expected.
 
 ### Other NVIDIA settings to start with
 
@@ -496,10 +438,10 @@ Choose a cap your PC can usually hold in busy fights. There is no need to match 
 For this example, use 170 FPS as the comparison baseline:
 
 ```text
-+exec autoexec.cfg +fps_max 170
++fps_max 170
 ```
 
-Keep `fps_max` commented in autoexec and NVIDIA Max Frame Rate off. A 170 FPS cap is valid on a 360 Hz monitor: it asks for a frame about every 5.88 ms, while the display refresh interval is about 2.78 ms. Those numbers are **not** total input latency, and fixed-refresh presentation can still tear or repeat frames unevenly. Do not switch to 357 FPS merely because the display is 360 Hz.
+Keep NVIDIA Max Frame Rate off when using the Steam cap. A 170 FPS cap is valid on a 360 Hz monitor: it asks for a frame about every 5.88 ms, while the display refresh interval is about 2.78 ms. Those numbers are **not** total input latency, and fixed-refresh presentation can still tear or repeat frames unevenly. Do not switch to 357 FPS merely because the display is 360 Hz.
 
 Start with in-game V-Sync off and Reflex Enabled. Compare Enabled + Boost while watching clocks and temperature. If 170 remains steady during demanding fights, compare a slightly higher target with identical captures; keep it only if pacing and responsiveness improve. If it repeatedly falls below 170, investigate the limiting component or try a lower cap. A more specific graphics target also depends on the chosen resolution.
 
@@ -528,14 +470,6 @@ Other readers should choose their own resolution, VRAM budget, cap, and presenta
 
 Try to change one thing at a time. If you change ten settings and the game feels worse, it's hard to know which one to undo.
 
-### Check that autoexec loads
-
-Fully exit and restart Apex after editing it. The referenced Reddit discussion reports that mid-game reload binds stopped working, and an `echo` line isn't a useful loading check without a visible console or log.
-
-If your PC normally runs above 60 FPS in the firing range, temporarily set `fps_max "60"` in autoexec. Remove other manual FPS caps for this test, restart, and see whether the game now stops around 60 FPS. Repeat with 90 if your PC normally exceeds it. If the observed ceiling follows both changes after separate restarts, that's evidence the file loaded.
-
-Restore your chosen cap afterward. This checks the file loading, not every command inside it. If it fails, use the [autoexec troubleshooting steps](#autoexec-status).
-
 ### Check the ADS blur setting separately
 
 Use the same weapon, optic, position, and aim point before and after the profile edit, with a full restart between them. If there's no visible difference, record that result. Don't assume a line worked just because it stayed in the file.
@@ -559,7 +493,7 @@ The in-game FPS display is a useful starting point, but it won't give you every 
 
 ### Something feels worse? Go back
 
-Close Apex. Restore the original files and launch options from your backup, along with the in-game and NVIDIA settings you recorded. If you didn't have an autoexec before, remove the added file and its launch argument. If you did, restore the original.
+Close Apex. Restore the original files and launch options from your backup, along with the in-game and NVIDIA settings you recorded.
 
 Remove read-only from any file that needs editing, restart, and check that the old behavior is back. Don't keep a tweak just because it sounds more “competitive.”
 
@@ -747,6 +681,8 @@ Keep SMT enabled by default on the example 5700X3D; investigate a specific sched
 
 ## Notes
 
+`autoexec.cfg` and its instructions were removed because startup support is unverified for this guide.
+
 <details>
 <summary><strong>Compatibility and why some advice differs</strong></summary>
 
@@ -759,14 +695,12 @@ The upstream author labels many commands as working. Those labels are upstream c
 
 
 - Include `hud_setting_adsDof "0"`, already present upstream, in the profile merge fragment as an optional ADS blur preference. Do not invent a generic `dof 0` command.
-- Keep `mat_depthfeather_enable "0"` commented as a separate legacy experiment. Depth feathering is not interchangeable with ADS depth of field.
 - Leave the frame cap for hardware-specific selection instead of imposing upstream's 174 FPS target.
 - Provide a merge-only video config, retaining the user's display, VRAM budget, and client schema.
 - Offer separate G-SYNC-enabled/tear-free and G-SYNC-disabled/tearing-allowed presentation profiles. Avoid claiming one fixed cap maximizes every performance goal.
-- Prefer menu controls and a minimal autoexec. Omit unverified network/prediction, telemetry, threading, ragdoll, decal, and forced texture overrides from the active config.
+- Prefer menu controls and short saved-settings snippets. Omit unverified network/prediction, telemetry, threading, ragdoll, decal, and forced texture overrides.
 - Preserve personal mouse, audio, binds, FOV, and gameplay preferences; do not force upstream's 7.1 audio layout or autosprint.
 - Avoid mandatory read-only configs, high process priority, global driver changes, or routine cache deletion.
-- Use `+exec` for both launcher guides and explicitly flag the upstream EA `-exec` discrepancy for on-PC validation.
 
 These choices keep the setup easier to understand and undo; they aren't benchmark results. See [validation](#validation) before claiming gains. Portions of the configuration are adapted from Downie2k's MIT-licensed work; the notice is retained in [third-party notice](#third-party). The existing project license is unchanged.
 
@@ -784,7 +718,6 @@ The Reddit discussion and NVIDIA article were reviewed from text copies after di
 | The GPU guide discusses cooling, stock/tuned comparisons, clocks, and stress tests | Add an optional comparison workflow, with stock settings as the baseline and performance/stability as the outcome |
 | The GPU guide includes maximum sliders, VBIOS flashing, clock-policy changes, and disabling overheat slowdown | Do not adopt these as generic instructions; retain manufacturer limits and thermal protections |
 | Reddit commenters flag a fixed 1440p video config | Keep the merge fragment and preserve the user's display settings |
-| Reddit reports runtime `exec` binds no longer work; the author acknowledges removing the bind | Require a full game restart; do not add a reload bind or use `echo` as proof of execution |
 | Reddit commenters report `-dev` no longer skips intros and suggest `-novid` | Document `-novid` as an optional, unverified startup convenience for both launchers |
 | The Reddit author describes 174 FPS as a personal sweet spot | Keep hardware-specific cap selection; do not adopt the comment's refresh-minus-one examples as universal targets |
 | A Reddit user initially blames audio tweaks for stutter, then retracts that diagnosis | Do not claim audio tweaks caused or cured it; use repeatable before/after measurements |
@@ -843,7 +776,8 @@ The repository retains its existing [GPL-3.0 license](LICENSE). Upstream-derived
 
 <a id="references"></a>
 
-## References
+<details>
+<summary><strong>References</strong></summary>
 
 <a id="ref-apexconfigs"></a>
 
@@ -872,3 +806,5 @@ gab0rik. (n.d.). *After years of regularly finetuning my pc, i decided to make a
 <a id="ref-waveform"></a>
 
 Waveform. (n.d.). *Bufferbloat and Internet speed test*. https://www.waveform.com/tools/bufferbloat
+
+</details>
