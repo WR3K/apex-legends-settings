@@ -15,13 +15,25 @@
 
 <table>
 <tr>
-<td align="center" width="33%"><strong>📁 Set it up</strong><br/><sub>Find the files, back them up, and edit in Notepad.</sub><br/><a href="#beginners">Show me how</a></td>
+<td align="center" width="33%"><strong>🖥️ Check your monitor</strong><br/><sub>Make sure the screen is actually using its high refresh rate.</sub><br/><a href="#refresh-rate">Check your Hz</a></td>
 <td align="center" width="33%"><strong>🎮 Tune the game</strong><br/><sub>Choose graphics settings and an FPS cap your PC can hold.</sub><br/><a href="#in-game">Game settings</a></td>
 <td align="center" width="33%"><strong>📊 Check the difference</strong><br/><sub>Compare real fights, not just a high number in the firing range.</sub><br/><a href="#validation">Test a change</a></td>
 </tr>
 </table>
 
-A guide for anyone who wants Apex to feel better, even if they've never opened a config file. Everything is on this page—**click a section to expand it**. You don't need every tweak or tool.
+Start with the screen and the game settings. You can do both without touching a config file. The extra guides are below—**click a section to expand it** when you need the steps.
+
+<a id="quick-setup"></a>
+
+## Start here — check the basics first
+
+**Check your monitor's Hz before downloading anything.** A 144, 240, or 360 Hz monitor can still be running at 60 Hz if it hasn't been set up. Buying a faster screen doesn't mean Windows has selected the right refresh rate.
+
+1. **Check the refresh rate.** Right-click the desktop → **Display settings → Advanced display**. Select the monitor you play on, then choose its highest supported refresh rate at your intended resolution. Keep the change when Windows asks. [NVIDIA steps and missing refresh rates](#refresh-rate).
+2. **Set up Apex's graphics.** Take a screenshot of the current settings first. In **Settings → Video**, start at the resolution recommended for your monitor, lower shadows/effects, and enable **NVIDIA Reflex** if available. Keep your own sensitivity and binds. The [in-game table](#in-game) gives the individual settings.
+3. **Check sync and set your FPS cap.** On NVIDIA, open **Control Panel → Set up G-SYNC** and check whether the enable box is ticked. For AMD, check FreeSync in AMD Software. In Steam, open **Apex → Properties → General → Launch Options**. `+fps_max 170` is the example here, not a number everyone should use. [Choose a cap for your setup](#nvidia).
+4. **Play a few fights.** Watch for big FPS drops, stutters, and how aiming feels. Change one thing at a time so you know what helped. If it got worse, put that setting back.
+5. **Only then look at file edits.** Want to try the ADS blur setting or the other snippets? Close Apex, back up the original files, and follow the [Notepad walkthrough](#beginners). You don't have to use them to follow this guide.
 
 ## Downloads
 
@@ -55,25 +67,62 @@ Need the full walkthrough? Open [Finding files, Notepad, and read-only](#beginne
 
 </details>
 
-<a id="quick-setup"></a>
-
-## Quick start
-
-| Step | What to do |
-| --- | --- |
-| **1 · Back up** | Run Apex once, close it, then back up the files you plan to edit. Take screenshots of your current settings. [File help](#beginners) |
-| **2 · Start in game** | Apply the [in-game settings](#in-game), then choose your [G-SYNC/V-Sync setup and FPS cap](#nvidia). Play a little before adding more changes |
-| **3 · Edit what you need** | Use the [video](#video-config) and [settings/profile](#saved-configs) snippets only where matching lines exist. |
-| **4 · Restart and compare** | Fully restart Apex and [test the difference](#validation). Keep what helps; undo what doesn't |
-
-No installer or Windows tweak pack required.
-
 <a id="contents"></a>
 
 ## Guides
 
 **Open the section you need.** The detailed instructions stay folded away until you click them.
 
+
+### 🖥️ Start with the monitor
+
+<a id="refresh-rate"></a>
+
+<details>
+<summary><strong>Is your monitor actually running at 144 / 240 / 360 Hz?</strong></summary>
+
+**Hz is how often the screen refreshes each second. FPS is how many frames the game produces.** They are different: a 360 Hz screen doesn't make the PC render 360 FPS. Still, check that you're using the refresh rate the screen supports before spending time on other tweaks.
+
+### Windows: works regardless of GPU brand
+
+1. Right-click an empty area of the desktop → **Display settings**.
+2. Open **Advanced display** (called **Advanced display settings** on some Windows versions).
+3. If you have more than one screen, select the one you use for Apex.
+4. Find **Choose a refresh rate** or **Refresh rate** and select the highest supported rate at the resolution you intend to use. Check that the resolution stays as intended.
+5. Confirm **Keep changes** if asked, then check the displayed refresh rate again.
+
+If the screen goes blank, wait for the change to revert. Don't confirm a mode the monitor cannot display correctly.
+
+### NVIDIA: the Change resolution page
+
+1. Open **NVIDIA Control Panel → Display → Change resolution**.
+2. Select the gaming monitor at the top—don't accidentally change the second screen.
+3. Select its native resolution. If it appears under **PC** in the resolution list, use that entry; TV-mode entries can offer a different set of refresh rates.
+4. In the **Refresh rate** dropdown beside the resolution list, choose the intended supported rate, then click **Apply** and confirm.
+5. Check Windows Advanced display afterward to confirm the setting.
+
+**Example screenshot settings:** an Alienware AW2724HF is selected, with **1920 × 1080 (native)** under **PC** and **360 Hz** in the refresh-rate dropdown. Those values belong to that example display; select the correct ones for yours.
+
+### The refresh rate you expected isn't listed?
+
+- Double-check the selected screen and resolution.
+- Check the monitor manual for the connection needed at that resolution and refresh rate. The monitor port, GPU port, cable, and any dock/adapter all matter. Try a direct connection with a suitable cable.
+- Some monitors need a high-refresh option enabled in their own on-screen menu. Follow the manufacturer's instructions for that model.
+- If NVIDIA Control Panel has no **Display** section, the screen may be controlled by integrated graphics, especially on a laptop. Use Windows Advanced display or the graphics software that controls that screen.
+
+Don't create a custom resolution or overclock the display just to make it match an example.
+
+### Check G-SYNC separately
+
+In **NVIDIA Control Panel → Display → Set up G-SYNC**, select the gaming monitor and look at **Enable G-SYNC, G-SYNC Compatible**. The example screenshot has this box **unticked**. That shows the example uses G-SYNC off; it is not an instruction for everyone to disable it.
+
+A missing, greyed-out, or “not validated” option doesn't prove G-SYNC is working. Check the monitor's support, its Adaptive-Sync setting, and the connection. If the panel asks for the monitor to be the primary display, check that selection too. Use the [G-SYNC/V-Sync guide](#nvidia) to choose the setup you want.
+
+The **Preferred refresh rate → Highest available** option in the Apex program profile is not a substitute for checking these display settings.
+
+[Back to guides](#contents)
+
+</details>
 
 ### 📁 Install and edit files
 
@@ -398,7 +447,7 @@ Start with what your PC is struggling with. The same graphics card might hold yo
 ### Find your specifications
 
 - Press **Ctrl + Shift + Esc → Performance** in Task Manager. CPU shows the processor model; Memory shows installed RAM; GPU shows the graphics card and dedicated GPU memory. Shared GPU memory is not equivalent to dedicated VRAM.
-- Open **Settings → System → Display → Advanced display**. Select your gaming monitor and confirm the resolution and refresh rate. Choose the intended supported refresh rate; a high-refresh screen can be left at 60 Hz accidentally.
+- Check the screen's actual refresh rate in **Settings → System → Display → Advanced display**. The [monitor walkthrough](#refresh-rate) shows the steps and the NVIDIA alternative.
 - For NVIDIA, check **NVIDIA Control Panel → Set up G-SYNC**, if available, and your monitor's own Adaptive-Sync setting. A missing menu may depend on the display, connection, or GPU arrangement; do not assume all monitors support it.
 
 ### Pick a starting point
@@ -430,8 +479,9 @@ Choose a cap your PC can usually hold in busy fights. There is no need to match 
 | CPU | AMD Ryzen 7 5700X3D |
 | GPU | NVIDIA GeForce RTX 3060 Ti |
 | System RAM | 32 GB |
-| Monitor refresh | 360 Hz |
-| Resolution | Not documented for this example; choose the display's native resolution initially |
+| Monitor | Alienware AW2724HF |
+| Monitor refresh | 360 Hz, selected on the example display-settings page |
+| Resolution | 1920 × 1080 (native), shown on the example display-settings page |
 | G-SYNC | Off |
 | FPS cap | 170, set in Steam launch options |
 
@@ -443,7 +493,7 @@ For this example, use 170 FPS as the comparison baseline:
 
 Keep NVIDIA Max Frame Rate off when using the Steam cap. A 170 FPS cap is valid on a 360 Hz monitor: it asks for a frame about every 5.88 ms, while the display refresh interval is about 2.78 ms. Those numbers are **not** total input latency, and fixed-refresh presentation can still tear or repeat frames unevenly. Do not switch to 357 FPS merely because the display is 360 Hz.
 
-Start with in-game V-Sync off and Reflex Enabled. Compare Enabled + Boost while watching clocks and temperature. If 170 remains steady during demanding fights, compare a slightly higher target with identical captures; keep it only if pacing and responsiveness improve. If it repeatedly falls below 170, investigate the limiting component or try a lower cap. A more specific graphics target also depends on the chosen resolution.
+Start with in-game V-Sync off and Reflex Enabled. Compare Enabled + Boost while watching clocks and temperature. If 170 remains steady during demanding fights, compare a slightly higher target with identical captures; keep it only if pacing and responsiveness improve. If it repeatedly falls below 170, investigate the limiting component or try a lower cap. These example settings are for 1920 × 1080; test again if the resolution changes.
 
 #### NVIDIA screenshots provided as examples
 
@@ -453,7 +503,7 @@ Screenshots provided as examples show the Apex DX12 program profile, Fixed Refre
 - Keep your existing maximum-performance and texture-filtering choices as the baseline, then compare Normal power management and Quality filtering separately. Do not change several controls and attribute the result to one.
 - Return Threaded optimization to Auto as a general default; forcing this OpenGL-oriented option on is not an established DX12 Apex improvement. OpenGL GDI compatibility is likewise not a useful Apex tuning target.
 - Prefer application-controlled anisotropic filtering and antialiasing where supported, and choose their values in game. Controls marked unsupported for the application are not additional performance opportunities.
-- The screenshot's “Highest available” setting does not prove Windows is currently using 360 Hz. Verify it in Advanced display.
+- The separate Change resolution screenshot shows 1920 × 1080 at 360 Hz, and the Set up G-SYNC screenshot shows the enable box unticked. Check the same pages on your own PC using the [monitor walkthrough](#refresh-rate).
 
 Other readers should choose their own resolution, VRAM budget, cap, and presentation profile rather than copying this hardware example wholesale.
 
