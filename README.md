@@ -1,20 +1,40 @@
-# Apex Legends settings
+> ⚠️ **Use at your own risk:** Back up your files and settings before changing anything. What works on one PC may make another run worse. Change one thing at a time, and undo it if it causes problems. FPS gains and command support are not guaranteed.
 
-The goal is simple: get good FPS, keep input delay low, and make Apex feel smooth when a fight gets busy. A high FPS number in the firing range is nice, but it doesn't help much if the game starts stuttering as soon as a squad pushes.
+<h1 align="center">Apex Legends settings</h1>
 
-This guide walks through the game settings, NVIDIA settings, launch options, and config files. If you've never opened a `.cfg` file before, that's fine—the steps below show where to find it, how to open it in Notepad, and how to undo a change.
+<p align="center"><strong>More FPS. Less input delay. Smoother fights.</strong><br/>A step-by-step guide, from opening your first config file to checking what actually helps.</p>
 
-Start with the in-game settings and work through one section at a time. You don't need every tweak or tool on this page. A lower-end PC and a high-end PC can use the same approach, but they won't necessarily need the same settings or FPS cap.
+<p align="center">
+  <a href="#quick-setup"><strong>Start here</strong></a> &middot;
+  <a href="#downloads"><strong>Downloads</strong></a> &middot;
+  <a href="#beginners"><strong>File help</strong></a> &middot;
+  <a href="#nvidia"><strong>FPS caps &amp; sync</strong></a> &middot;
+  <a href="#notes"><strong>Notes</strong></a>
+</p>
 
-The example PC has a Ryzen 7 5700X3D, RTX 3060 Ti, 32 GB RAM, and a 360 Hz monitor, with a 170 FPS cap and G-SYNC off. These are **example settings**, not targets everyone should copy.
+---
 
-Inspired by [DominicKlmNL's Apex config](https://github.com/DominicKlmNL/apex-legends-config), with sources and differences explained [below](#sources). The files haven't been tested in a running Apex client for this guide, so no FPS gain or command support is guaranteed. Check the [autoexec update](#autoexec-status) before using that file.
+The aim is to keep Apex responsive and smooth when a fight gets busy. A high FPS number in the firing range is nice, but it doesn't help much if the game stutters as soon as a squad pushes.
+
+If you've never opened a `.cfg` file, start with the [beginner walkthrough](#beginners). It shows where the files go, how to use Notepad, and how to undo a change. You don't need every tweak or tool on this page.
+
+| Start with | Then | Check the result |
+| --- | --- | --- |
+| [Back up your files](#beginners) | [Set up the game](#in-game) and [choose an FPS cap](#nvidia) | [Compare before and after](#validation), including busy fights |
+
+The example PC uses a **5700X3D · RTX 3060 Ti · 32 GB RAM · 360 Hz display**, with a **170 FPS cap and G-SYNC off**. These are example settings, not targets for every PC.
+
+> [!NOTE]
+> The config files haven't been tested in a running Apex client for this guide. Read the [autoexec support update](#autoexec-status) before using that optional file.
+
+Inspired by [DominicKlmNL's Apex config](https://github.com/DominicKlmNL/apex-legends-config). Extra reading and explanations are in [Notes](#notes).
 
 ## Downloads
 
 There are **four config files**, plus this README and the license.
 
-**Read this before copying anything:** `settings.cfg`, `profile.cfg`, and `videoconfig.txt` only contain a few suggested lines. They are **not complete replacements** for the files Apex creates. Back up the original, find the matching line, and change its value. Replacing the whole file could wipe your own binds, sensitivity, or other settings.
+> [!IMPORTANT]
+> `settings.cfg`, `profile.cfg`, and `videoconfig.txt` contain only a few suggested lines. **Do not replace your complete game files with them.** Back up the original, find the matching line, and change its value. Replacing the whole file could wipe your binds, sensitivity, or other settings.
 
 `autoexec.cfg` is optional. If you already have one, merge the lines you want rather than replacing your own file.
 
@@ -31,24 +51,16 @@ For download and Notepad instructions, start with the [beginner walkthrough](#be
 
 ## Contents
 
-- [Start here](#quick-setup)
-- [Does autoexec still work?](#autoexec-status)
-- [Editing settings.cfg and profile.cfg](#saved-configs)
-- [Beginner walkthrough](#beginners)
-- [Choose settings for your PC](#hardware)
-- [In-game settings](#in-game)
-- [NVIDIA settings, G-SYNC, and FPS caps](#nvidia)
-- [Editing videoconfig.txt](#video-config)
-- [Steam launch options](#steam)
-- [EA app launch options](#ea-app)
-- [Check whether a change actually helped](#validation)
-- [Windows and PC troubleshooting](#windows)
-- [Optional tools](#tools)
-- [Want to go further? Optional advanced tuning](#advanced-tuning)
-- [Screenshot checklist](#screenshots)
-- [Sources and why some advice is different](#sources)
-- [Third-party notices](#third-party)
-- [Project license](#project-license)
+| Getting started | Game and graphics | Help and extra reading |
+| --- | --- | --- |
+| [Start here](#quick-setup) | [Choose settings for your PC](#hardware) | [Check whether a change helped](#validation) |
+| [Downloads and file locations](#downloads) | [In-game settings](#in-game) | [Windows troubleshooting](#windows) |
+| [Beginner walkthrough](#beginners) | [NVIDIA, G-SYNC, and FPS caps](#nvidia) | [Optional tools](#tools) |
+| [Does autoexec still work?](#autoexec-status) | [Steam launch options](#steam) | [Advanced tuning](#advanced-tuning) |
+| [Edit settings.cfg and profile.cfg](#saved-configs) | [EA app launch options](#ea-app) | [Screenshot checklist](#screenshots) |
+| [Edit videoconfig.txt](#video-config) | [Notes](#notes) | [Credits](#third-party) · [License](#project-license) |
+
+---
 
 <a id="quick-setup"></a>
 
@@ -111,7 +123,7 @@ For the ADS setting, restart Apex and compare the same weapon, optic, and scene.
 
 Check that you've launched Apex using this Windows account. If Saved Games was moved, press **Windows + R** and enter `shell:SavedGames`, then look for `Respawn\Apex`.
 
-If the game hasn't created a particular key, skip it. Don't create a full settings file from the snippet or assume pasting the line somewhere else will make it work. The file locations and example keys also appear in an [older community reference](#sources); the files your installed game creates are what you should work from.
+If the game hasn't created a particular key, skip it. Don't create a full settings file from the snippet or assume pasting the line somewhere else will make it work. The file locations and example keys also appear in an [older community reference](#notes); the files your installed game creates are what you should work from.
 
 Leave settings/profile writable while testing, and usually afterward too, so your binds and preferences can save. Making them read-only won't improve FPS. The mouse-acceleration line is a preference, not a proven latency fix. These snippets haven't been tested in a running client for this guide.
 
@@ -370,7 +382,7 @@ Do not routinely delete shader caches. Warm up after a game or driver update bef
 
 ### How the referenced NVIDIA article is used
 
-The GoodTechMaster article is dated 2022. Its application-controlled AA/filtering and Auto threaded-optimization recommendations fit this baseline. High performance texture filtering and larger shader caches remain optional comparisons, not guaranteed improvements. Its general Low Latency Mode discussion does not replace an Apex-specific Reflex setup, and frame caps can help frames arrive more evenly, keep G-SYNC/FreeSync within the display's supported range, and reduce power use. See [source decisions](#sources) for the differences.
+The GoodTechMaster article is dated 2022. Its application-controlled AA/filtering and Auto threaded-optimization recommendations fit this baseline. High performance texture filtering and larger shader caches remain optional comparisons, not guaranteed improvements. Its general Low Latency Mode discussion does not replace an Apex-specific Reflex setup, and frame caps can help frames arrive more evenly, keep G-SYNC/FreeSync within the display's supported range, and reduce power use. See [notes](#notes) for the differences.
 
 Example driver settings and the 170 FPS / G-SYNC-off configuration are discussed in the [hardware guide](#hardware). Use that as a worked example, not a universal profile.
 
@@ -581,7 +593,7 @@ For O&O ShutUp10++, Winaero Tweaker, Autoruns, and measurement utilities, see [o
 
 You don't need to download everything in this list. Pick a tool only when you have a reason to use it. Some help measure performance; others change Windows preferences and may do nothing for FPS. They haven't been independently tested for this guide. Use the official links below and check that the current version supports your system.
 
-**Use at your own risk:** system-tweaking tools can affect Windows features, updates, devices, or startup software. Record your original settings, back up important files, and create a restore point if System Protection is available. A restore point is not a full backup and does not guarantee every change can be undone. Change one item at a time and keep a way to reverse it.
+Windows-tweaking tools can affect updates, devices, startup apps, and other features. Record your original settings, back up important files, and create a restore point if System Protection is available. A restore point is not a full backup and does not guarantee every change can be undone. Change one item at a time and keep a way to reverse it.
 
 ### Windows configuration and startup tools
 
@@ -628,7 +640,7 @@ If the game is already running well, you can stop there. The guides below go muc
 - [Calypto's Latency Guide](https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit?usp=sharing) covers background processes, driver scheduling, input, displays, and extensive system changes. The PDF copy contains advice for several Windows and hardware generations; check applicability before using any recommendation.
 - [A slightly better way to overclock and tweak your Nvidia GPU](https://docs.google.com/document/d/14ma-_Os3rNzio85yBemD-YSpF_1z75mZJz1UdzmW8GE/edit?usp=sharing), by Cancerogeno, includes a **mid-2026 update** on newer RTX cards followed by its older Pascal/Turing guide. The example RTX 3060 Ti is **Ampere**, so neither an old Pascal/Turing voltage example nor an RTX 40/50-series result is a ready-made preset for it.
 
-Both PDF copies were reviewed for this guide. Direct access to the Google Docs links returned HTTP 403, so their live revisions were not checked. The [source decisions](#sources) explain which points informed the recommendations.
+Both PDF copies were reviewed for this guide. Direct access to the Google Docs links returned HTTP 403, so their live revisions were not checked. The [notes](#notes) explain which points informed the recommendations.
 
 ### What to take from these guides
 
@@ -658,7 +670,7 @@ For experienced readers choosing to experiment:
 
 ### What to leave out of a basic setup
 
-The sources include blanket SMT/CPU-idle changes, timer and interrupt-affinity edits, security-feature disabling, GPU BIOS changes, and attempts to suppress thermal downclocking. These can reduce performance, break devices or Windows, weaken protection, or damage hardware. They are not part of the repository's baseline. In particular, do not disable GPU overheat protection or flash another card's BIOS to follow this guide.
+The linked guides include blanket SMT/CPU-idle changes, timer and interrupt-affinity edits, security-feature disabling, GPU BIOS changes, and attempts to suppress thermal downclocking. These can reduce performance, break devices or Windows, weaken protection, or damage hardware. They are not part of the repository's baseline. In particular, do not disable GPU overheat protection or flash another card's BIOS to follow this guide.
 
 Keep SMT enabled by default on the example 5700X3D; investigate a specific scheduling problem with controlled measurements rather than treating SMT-off as a universal improvement. Keep Reflex Enabled as the starting point and compare + Boost on the actual PC; neither mode is automatically best for every workload.
 
@@ -710,13 +722,13 @@ Example caption: **Example PC settings — 5700X3D / RTX 3060 Ti, 170 FPS cap, G
 
 [Back to contents](#contents)
 
-<a id="sources"></a>
+<a id="notes"></a>
 
-## Sources and why some advice is different
+## Notes
 
 Reference review: 2026-10-07. Current-client behavior and performance remain unverified.
 
-| Source | Use and access status |
+| Reference | What to know |
 | --- | --- |
 | [Calypto's Latency Guide](https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit?usp=sharing) | Reviewed the PDF copy. Background for latency diagnostics and display behavior; broad system-tweak and hardware claims are not independently verified. Direct Google Docs access returned HTTP 403 |
 | [A slightly better way to overclock and tweak your Nvidia GPU](https://docs.google.com/document/d/14ma-_Os3rNzio85yBemD-YSpF_1z75mZJz1UdzmW8GE/edit?usp=sharing) | Reviewed the PDF copy by Cancerogeno, including its mid-2026 update and older Pascal/Turing sections. No proposed tuning was executed or benchmarked. Direct Google Docs access returned HTTP 403 |
@@ -727,7 +739,9 @@ Reference review: 2026-10-07. Current-client behavior and performance remain unv
 
 The upstream author labels many commands as working. Those labels are upstream claims, not verification of this repository or the current client. This project matches the reference's main categories while curating its settings rather than mirroring every override.
 
-### Why this isn't a copy of every tweak in those guides
+<details>
+<summary><strong>Why some recommendations differ from the linked guides</strong></summary>
+
 
 - Include `hud_setting_adsDof "0"`, already present upstream, in the profile merge fragment as an optional ADS blur preference. Do not invent a generic `dof 0` command.
 - Keep `mat_depthfeather_enable "0"` commented as a separate legacy experiment. Depth feathering is not interchangeable with ADS depth of field.
@@ -741,11 +755,11 @@ The upstream author labels many commands as working. Those labels are upstream c
 
 These choices keep the setup easier to understand and undo; they aren't benchmark results. See [validation](#validation) before claiming gains. Portions of the configuration are adapted from Downie2k's MIT-licensed work; the notice is retained in [third-party notice](#third-party). The existing project license is unchanged.
 
-### Findings from the referenced articles
+### Comparing the advice
 
 The Reddit discussion and NVIDIA article were reviewed from text copies after direct access returned HTTP 403. These copies do not establish that the live pages are unchanged or that their technical claims have been independently tested.
 
-| Source observation | Decision for this repository |
+| Advice in the guide | How it is used here |
 | --- | --- |
 | Calypto emphasizes background work, cooling, and measuring changes | Retain controlled before/after checks, while distinguishing driver scheduling from game/input latency |
 | Calypto uses LatencyMon averages and mouse polling plots as latency/smoothness targets | Use them for their diagnostic scope; do not equate them with click-to-photon latency or Apex frame times |
@@ -767,6 +781,8 @@ The Reddit discussion and NVIDIA article were reviewed from text copies after di
 | GoodTechMaster suggests large shader caches | Keep the default unless cache pressure is identified; extra capacity does not guarantee fewer spikes |
 
 The article also conflates NVIDIA Image Scaling with AI upscaling and describes a DirectX use for the driver's OpenGL triple-buffering control. Those explanations are not carried into this guide: NIS is spatial scaling/sharpening, and the Control Panel triple-buffering option is for OpenGL. DSR/DLDSR render above the chosen display resolution and can add substantial GPU work, so they are not part of the baseline. Driver availability and renderer support still determine whether a setting has any effect.
+
+</details>
 
 [Back to contents](#contents)
 
@@ -806,4 +822,4 @@ SOFTWARE.
 
 ## Project license
 
-The repository retains its existing [GPL-3.0 license](LICENSE). Upstream-derived settings are credited in [sources](#sources), with the upstream MIT notice preserved in [third-party notices](#third-party).
+The repository retains its existing [GPL-3.0 license](LICENSE). Upstream-derived settings are credited in [notes](#notes), with the upstream MIT notice preserved in [third-party notices](#third-party).
