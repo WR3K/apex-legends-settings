@@ -1,137 +1,89 @@
-> ⚠️ **Use at your own risk:** Back up your files and settings before changing anything. What works on one PC may make another run worse. Change one thing at a time, and undo it if it causes problems. FPS gains and command support are not guaranteed.
+> ⚠️ **Use at your own risk:** Back up your files first. Change one thing at a time and undo anything that causes problems. FPS gains and command support are not guaranteed.
+
+<a id="apex-legends-settings"></a>
 
 <h1 align="center">Apex Legends settings</h1>
-
-<p align="center"><strong>More FPS. Less input delay. Smoother fights.</strong><br/>A step-by-step guide, from opening your first config file to checking what actually helps.</p>
+<p align="center"><strong>More FPS. Less input delay. Smoother fights.</strong><br/>Start with the basics. Open the extra steps only when you need them.</p>
 
 <p align="center">
-  <a href="#quick-setup"><strong>Start here</strong></a> &middot;
+  <a href="#quick-setup"><strong>Quick start</strong></a> &middot;
   <a href="#downloads"><strong>Downloads</strong></a> &middot;
-  <a href="#beginners"><strong>File help</strong></a> &middot;
-  <a href="#nvidia"><strong>FPS caps &amp; sync</strong></a> &middot;
+  <a href="#contents"><strong>Guides</strong></a> &middot;
   <a href="#notes"><strong>Notes</strong></a>
 </p>
 
----
+<table>
+<tr>
+<td align="center" width="33%"><strong>📁 Set it up</strong><br/><sub>Find the files, back them up, and edit in Notepad.</sub><br/><a href="#beginners">Show me how</a></td>
+<td align="center" width="33%"><strong>🎮 Tune the game</strong><br/><sub>Choose graphics settings and an FPS cap your PC can hold.</sub><br/><a href="#in-game">Game settings</a></td>
+<td align="center" width="33%"><strong>📊 Check the difference</strong><br/><sub>Compare real fights, not just a high number in the firing range.</sub><br/><a href="#validation">Test a change</a></td>
+</tr>
+</table>
 
-The aim is to keep Apex responsive and smooth when a fight gets busy. A high FPS number in the firing range is nice, but it doesn't help much if the game stutters as soon as a squad pushes.
-
-If you've never opened a `.cfg` file, start with the [beginner walkthrough](#beginners). It shows where the files go, how to use Notepad, and how to undo a change. You don't need every tweak or tool on this page.
-
-| Start with | Then | Check the result |
-| --- | --- | --- |
-| [Back up your files](#beginners) | [Set up the game](#in-game) and [choose an FPS cap](#nvidia) | [Compare before and after](#validation), including busy fights |
-
-The example PC uses a **5700X3D · RTX 3060 Ti · 32 GB RAM · 360 Hz display**, with a **170 FPS cap and G-SYNC off**. These are example settings, not targets for every PC.
-
-> [!NOTE]
-> The config files haven't been tested in a running Apex client for this guide. Read the [autoexec support update](#autoexec-status) before using that optional file.
-
-Inspired by [DominicKlmNL's Apex config](https://github.com/DominicKlmNL/apex-legends-config). Extra reading and explanations are in [Notes](#notes).
+A guide for anyone who wants Apex to feel better, even if they've never opened a config file. Everything is on this page—**click a section to expand it**. You don't need every tweak or tool.
 
 ## Downloads
 
-There are **four config files**, plus this README and the license.
-
 > [!IMPORTANT]
-> `settings.cfg`, `profile.cfg`, and `videoconfig.txt` contain only a few suggested lines. **Do not replace your complete game files with them.** Back up the original, find the matching line, and change its value. Replacing the whole file could wipe your binds, sensitivity, or other settings.
+> `settings.cfg`, `profile.cfg`, and `videoconfig.txt` are **snippets, not full replacements**. Back up the files Apex created and edit only matching lines. Keep your own binds, sensitivity, and resolution.
 
-`autoexec.cfg` is optional. If you already have one, merge the lines you want rather than replacing your own file.
-
-| File | Purpose | Exact destination | Raw file |
-| --- | --- | --- | --- |
-| [autoexec.cfg](autoexec.cfg) | Optional commands to try at startup; see the support note | `<Apex installation>\cfg\autoexec.cfg` | [Raw autoexec](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/autoexec.cfg) |
-| [settings.cfg](settings.cfg) | Mouse-acceleration preference; keep your own binds and sensitivity | `%USERPROFILE%\Saved Games\Respawn\Apex\local\settings.cfg` | [Raw settings fragment](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/settings.cfg) |
-| [videoconfig.txt](videoconfig.txt) | A few graphics settings; keep your own resolution and texture budget | `%USERPROFILE%\Saved Games\Respawn\Apex\local\videoconfig.txt` | [Raw video fragment](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/videoconfig.txt) |
-| [profile.cfg](profile.cfg) | The ADS blur setting; keep your other preferences | `%USERPROFILE%\Saved Games\Respawn\Apex\profile\profile.cfg` | [Raw profile fragment](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/profile.cfg) |
-
-`<Apex installation>` means the folder opened by Steam's **Browse local files** or the EA app's install-location control; it is not text to paste into Windows Run. The Saved Games paths can be pasted into Run and may differ if you relocated Saved Games. `profile.cfg` stores Apex preferences. It is **not** an NVIDIA profile to import into the driver.
-
-For download and Notepad instructions, start with the [beginner walkthrough](#beginners).
-
-## Contents
-
-| Getting started | Game and graphics | Help and extra reading |
+| File | What it's for | Copy / download |
 | --- | --- | --- |
-| [Start here](#quick-setup) | [Choose settings for your PC](#hardware) | [Check whether a change helped](#validation) |
-| [Downloads and file locations](#downloads) | [In-game settings](#in-game) | [Windows troubleshooting](#windows) |
-| [Beginner walkthrough](#beginners) | [NVIDIA, G-SYNC, and FPS caps](#nvidia) | [Optional tools](#tools) |
-| [Does autoexec still work?](#autoexec-status) | [Steam launch options](#steam) | [Advanced tuning](#advanced-tuning) |
-| [Edit settings.cfg and profile.cfg](#saved-configs) | [EA app launch options](#ea-app) | [Screenshot checklist](#screenshots) |
-| [Edit videoconfig.txt](#video-config) | [Notes](#notes) | [Credits](#third-party) · [License](#project-license) |
+| [autoexec.cfg](autoexec.cfg) | Optional startup settings | [Raw file](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/autoexec.cfg) |
+| [settings.cfg](settings.cfg) | Mouse-acceleration preference | [Raw file](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/settings.cfg) |
+| [videoconfig.txt](videoconfig.txt) | A few graphics settings | [Raw file](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/videoconfig.txt) |
+| [profile.cfg](profile.cfg) | ADS blur preference | [Raw file](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/profile.cfg) |
 
----
+The files haven't been tested in a running Apex client for this guide. Autoexec is optional; check its [support note](#autoexec-status) before using it.
+
+<a id="file-locations"></a>
+
+<details>
+<summary><strong>📂 Where does each file go?</strong></summary>
+
+| File | Exact destination |
+| --- | --- |
+| `autoexec.cfg` | `<Apex installation>\cfg\autoexec.cfg` |
+| `settings.cfg` | `%USERPROFILE%\Saved Games\Respawn\Apex\local\settings.cfg` |
+| `videoconfig.txt` | `%USERPROFILE%\Saved Games\Respawn\Apex\local\videoconfig.txt` |
+| `profile.cfg` | `%USERPROFILE%\Saved Games\Respawn\Apex\profile\profile.cfg` |
+
+`<Apex installation>` means the folder Steam opens through **Manage → Browse local files**, or the EA app's install-location control. Don't paste those angle brackets into Windows Run.
+
+The Saved Games paths can be pasted into **Windows + R**. If that folder was moved, use `shell:SavedGames` and look for `Respawn\Apex` instead.
+
+Already have an autoexec? Back it up and merge only the lines you want. The other three downloads are snippets to merge into your existing files, not complete files to copy over them. `profile.cfg` is an Apex file, not an NVIDIA driver profile.
+
+Need the full walkthrough? Open [Finding files, Notepad, and read-only](#beginners).
+
+</details>
 
 <a id="quick-setup"></a>
 
-## Start here
+## Quick start
 
-If this is your first time changing config files, read the [file walkthrough](#beginners) first. Otherwise, here's the order to follow:
+| Step | What to do |
+| --- | --- |
+| **1 · Back up** | Run Apex once, close it, then back up the files you plan to edit. Take screenshots of your current settings. [File help](#beginners) |
+| **2 · Start in game** | Apply the [in-game settings](#in-game), then choose your [G-SYNC/V-Sync setup and FPS cap](#nvidia). Play a little before adding more changes |
+| **3 · Edit what you need** | Use the [video](#video-config) and [settings/profile](#saved-configs) snippets only where matching lines exist. Autoexec is optional; [check support first](#autoexec-status) |
+| **4 · Restart and compare** | Fully restart Apex and [test the difference](#validation). Keep what helps; undo what doesn't |
 
-1. Run Apex once so it creates its settings files, then close it. Back up any files you plan to edit and take screenshots of your current game and NVIDIA settings.
-2. Apply the [in-game starting settings](#in-game). Play a little and get a feel for how the game runs before adding anything else.
-3. Choose the [G-SYNC/V-Sync setup](#nvidia) that matches how you want to play, then pick an FPS cap your PC can hold in busy fights.
-4. If you want to try [autoexec.cfg](autoexec.cfg), put it in the game's `cfg` folder and add `+exec autoexec.cfg` to the launch options. It's optional; [check that it loads](#validation).
-5. For the other three files, edit only the matching lines in your existing files. The [video guide](#video-config) and [settings/profile guide](#saved-configs) explain what goes where.
-6. Fully restart Apex, check the settings, and compare against where you started. If a change makes things worse, undo it.
+No installer or Windows tweak pack required.
 
-You don't need an installer or a pack of Windows tweaks to use these files.
+<a id="contents"></a>
 
-[Back to contents](#contents)
+## Guides
 
-<a id="autoexec-status"></a>
+**Open the section you need.** The detailed instructions stay folded away until you click them.
 
-## Does autoexec still work?
 
-**Update: 7 October 2026 — startup autoexec support is still unverified for this guide. It has not been confirmed removed.**
-
-The linked Reddit discussion says that binds used to reload an `exec` file **while the game is running** stopped working. That is different from loading `autoexec.cfg` **when Apex starts**. The reference repository still describes startup loading, but that isn't a current in-game test.
-
-The file stays available as an optional download. Its active settings are also in the game menus, so you can skip it and still use the rest of this guide. The ADS blur setting is in the `profile.cfg` snippet and doesn't need autoexec to run.
-
-Before relying on it, use the [loading check](#validation). A file loading successfully doesn't mean every command in it still works—Apex updates can change that.
-
-### If it doesn't load
-
-1. Check the install folder, filename, and launch options first. `autoexec.cfg.txt` is the wrong filename.
-2. If it still won't load, close Apex and remove `+exec autoexec.cfg` from Steam/EA launch options. Keep your FPS cap. For the 170 FPS example, that leaves `+fps_max 170`.
-3. Move the added autoexec into your backup folder. If you merged it with an older file, restore that original instead.
-4. Set **FOV Ability Scaling → Disabled** and **Sprint View Shake → Minimal** in the game menu, then restart.
-
-Don't add reload binds or chain `exec` commands through the other settings files to try to force it. A blocked or removed command won't become supported just because it's in a different file. If reporting a problem, include the game version and what happened during the loading check.
-
-[Back to contents](#contents)
-
-<a id="saved-configs"></a>
-
-## Editing settings.cfg and profile.cfg
-
-These are files Apex saves for you. You don't need to add launch options to load them.
-
-First, run the game, save your preferences, and close it normally. Press **Windows + R**, paste one of the folder paths below, and press Enter.
-
-| Folder to open | File to edit | What to change |
-| --- | --- | --- |
-| `%USERPROFILE%\Saved Games\Respawn\Apex\local` | `settings.cfg` | If `m_acceleration` already exists, you can set it to `"0"` to request no mouse acceleration. Leave your binds, sensitivity, ADS multipliers, and other lines alone |
-| `%USERPROFILE%\Saved Games\Respawn\Apex\profile` | `profile.cfg` | Find `hud_setting_adsDof` and, if it exists, set it to `"0"`. This requests no depth-of-field blur while aiming down sights |
-
-Back up the file before editing. Use [Open with → Notepad](#beginners), change the existing value, and save. Don't add a second copy of the same line or replace your complete file with the short download.
-
-For the ADS setting, restart Apex and compare the same weapon, optic, and scene. Some blur may remain, and the setting may be ignored on a particular game version. Judge it by what actually changes on screen.
-
-### Can't find the file or setting?
-
-Check that you've launched Apex using this Windows account. If Saved Games was moved, press **Windows + R** and enter `shell:SavedGames`, then look for `Respawn\Apex`.
-
-If the game hasn't created a particular key, skip it. Don't create a full settings file from the snippet or assume pasting the line somewhere else will make it work. The file locations and example keys also appear in an [older community reference](#notes); the files your installed game creates are what you should work from.
-
-Leave settings/profile writable while testing, and usually afterward too, so your binds and preferences can save. Making them read-only won't improve FPS. The mouse-acceleration line is a preference, not a proven latency fix. These snippets haven't been tested in a running client for this guide.
-
-[Back to contents](#contents)
+### 📁 Install and edit files
 
 <a id="beginners"></a>
 
-## Beginner walkthrough
+<details>
+<summary><strong>Finding files, opening Notepad, and setting read-only</strong></summary>
 
 A config file is just a text file with settings in it. You can open it in Notepad. The important part is putting it in the right folder and keeping a backup before editing anything.
 
@@ -215,11 +167,288 @@ For a permanent change: close the game, remove read-only, edit the relevant file
 
 Continue with [in-game settings](#in-game), [choosing settings for your PC](#hardware), and [validation](#validation).
 
-[Back to contents](#contents)
+[Back to guides](#contents)
+
+</details>
+
+<a id="saved-configs"></a>
+
+<details>
+<summary><strong>Editing settings.cfg and profile.cfg</strong></summary>
+
+These are files Apex saves for you. You don't need to add launch options to load them.
+
+First, run the game, save your preferences, and close it normally. Press **Windows + R**, paste one of the folder paths below, and press Enter.
+
+| Folder to open | File to edit | What to change |
+| --- | --- | --- |
+| `%USERPROFILE%\Saved Games\Respawn\Apex\local` | `settings.cfg` | If `m_acceleration` already exists, you can set it to `"0"` to request no mouse acceleration. Leave your binds, sensitivity, ADS multipliers, and other lines alone |
+| `%USERPROFILE%\Saved Games\Respawn\Apex\profile` | `profile.cfg` | Find `hud_setting_adsDof` and, if it exists, set it to `"0"`. This requests no depth-of-field blur while aiming down sights |
+
+Back up the file before editing. Use [Open with → Notepad](#beginners), change the existing value, and save. Don't add a second copy of the same line or replace your complete file with the short download.
+
+For the ADS setting, restart Apex and compare the same weapon, optic, and scene. Some blur may remain, and the setting may be ignored on a particular game version. Judge it by what actually changes on screen.
+
+### Can't find the file or setting?
+
+Check that you've launched Apex using this Windows account. If Saved Games was moved, press **Windows + R** and enter `shell:SavedGames`, then look for `Respawn\Apex`.
+
+If the game hasn't created a particular key, skip it. Don't create a full settings file from the snippet or assume pasting the line somewhere else will make it work. The file locations and example keys also appear in an [older community reference](#notes); the files your installed game creates are what you should work from.
+
+Leave settings/profile writable while testing, and usually afterward too, so your binds and preferences can save. Making them read-only won't improve FPS. The mouse-acceleration line is a preference, not a proven latency fix. These snippets haven't been tested in a running client for this guide.
+
+[Back to guides](#contents)
+
+</details>
+
+<a id="video-config"></a>
+
+<details>
+<summary><strong>Editing videoconfig.txt</strong></summary>
+
+Start with the in-game graphics menu. It writes the settings in the format your current Apex version expects. Editing `videoconfig.txt` is optional.
+
+The [download](videoconfig.txt) contains only four suggested settings. **Don't replace your complete video config with it.**
+
+1. Apply the [in-game settings](#in-game), then close Apex.
+2. Press **Windows + R**, paste `%USERPROFILE%\Saved Games\Respawn\Apex\local`, and open it. Back up `videoconfig.txt`.
+3. Open your original in Notepad. Find the matching keys from the table below and change their values. If a key isn't there, skip it and use the game menu.
+4. Keep the existing `VideoConfig` block and braces. Don't add a second block or duplicate keys.
+5. Leave your resolution, display mode, texture memory budget (`setting.stream_memory`), version (`setting.configversion`), and all other values as they are.
+6. Save, restart Apex, and check the menu and a short match. Exit normally and look at what the game saved afterward.
+
+| Key | Value in the snippet | Intended change |
+| --- | --- | --- |
+| `setting.mat_vsync_mode` | `0` | In-game V-Sync off; driver V-Sync depends on the [setup you choose](#nvidia) |
+| `setting.mat_antialias_mode` | `0` | Anti-aliasing off |
+| `setting.volumetric_lighting` | `0` | Volumetric lighting off |
+| `setting.particle_cpu_level` | `0` | Low effects detail |
+
+These mappings come from the reference config and still need checking in the current game. If a value keeps changing back, it may have changed meaning or stopped being supported. Read-only won't fix that.
+
+Once you're happy with the settings, you can use the [optional read-only steps](#beginners). Leave the file writable while testing and when a game update needs to update its format. The ADS blur line belongs in the [profile snippet](#saved-configs), not this file.
+
+[Back to guides](#contents)
+
+</details>
+
+<a id="autoexec-status"></a>
+
+<details>
+<summary><strong>Does autoexec still work?</strong></summary>
+
+**Update: 7 October 2026 — startup autoexec support is still unverified for this guide. It has not been confirmed removed.**
+
+The linked Reddit discussion says that binds used to reload an `exec` file **while the game is running** stopped working. That is different from loading `autoexec.cfg` **when Apex starts**. The reference repository still describes startup loading, but that isn't a current in-game test.
+
+The file stays available as an optional download. Its active settings are also in the game menus, so you can skip it and still use the rest of this guide. The ADS blur setting is in the `profile.cfg` snippet and doesn't need autoexec to run.
+
+Before relying on it, use the [loading check](#validation). A file loading successfully doesn't mean every command in it still works—Apex updates can change that.
+
+### If it doesn't load
+
+1. Check the install folder, filename, and launch options first. `autoexec.cfg.txt` is the wrong filename.
+2. If it still won't load, close Apex and remove `+exec autoexec.cfg` from Steam/EA launch options. Keep your FPS cap. For the 170 FPS example, that leaves `+fps_max 170`.
+3. Move the added autoexec into your backup folder. If you merged it with an older file, restore that original instead.
+4. Set **FOV Ability Scaling → Disabled** and **Sprint View Shake → Minimal** in the game menu, then restart.
+
+Don't add reload binds or chain `exec` commands through the other settings files to try to force it. A blocked or removed command won't become supported just because it's in a different file. If reporting a problem, include the game version and what happened during the loading check.
+
+[Back to guides](#contents)
+
+</details>
+
+<a id="steam"></a>
+
+<details>
+<summary><strong>Steam launch options</strong></summary>
+
+In Steam, right-click **Apex Legends → Properties → General**. Find **Launch Options** and save a copy of anything already in the box.
+
+If you're using the optional autoexec, first put it in **Manage → Browse local files → cfg**, then add:
+
+```text
++exec autoexec.cfg
+```
+
+### Adding an FPS cap
+
+`+fps_max` tells the game the highest FPS you want it to render. It doesn't guarantee your PC can hold that number.
+
+For the example 170 FPS setup:
+
+```text
++exec autoexec.cfg +fps_max 170
+```
+
+If you're skipping autoexec, just use:
+
+```text
++fps_max 170
+```
+
+Replace 170 with the target you chose in the [FPS-cap guide](#nvidia). For example, 141 FPS is one starting point for a 144 Hz screen with G-SYNC enabled and driver V-Sync on. It isn't the right cap for every PC.
+
+If the cap is set here, leave `fps_max` commented out in autoexec and the driver's Max Frame Rate setting off. Keeping it in one place makes troubleshooting much easier.
+
+### Skipping the intro
+
+The Reddit comments suggest `-novid` after reporting that `-dev` stopped skipping the intro. You can try:
+
+```text
+-novid +exec autoexec.cfg +fps_max 170
+```
+
+Keep only the parts you're using. Intro skipping is a startup convenience, not an FPS tweak. If the game ignores `-novid`, remove it.
+
+Leave `-high`, `-threads`, old renderer flags, and network overrides out of the starting setup. There's no demonstrated benefit for your PC just because another guide lists them.
+
+[Back to guides](#contents)
+
+</details>
+
+<a id="ea-app"></a>
+
+<details>
+<summary><strong>EA app launch options</strong></summary>
+
+Open Apex's game properties/manage menu in the EA app. Find the installation location and open its `cfg` folder if you're using autoexec. Back up an existing autoexec before merging any lines.
+
+In the game properties, find **Advanced launch options** or the similarly named field. Save a copy of the old arguments, then use the same starting command:
+
+```text
++exec autoexec.cfg
+```
+
+To include an example 170 FPS cap:
+
+```text
++exec autoexec.cfg +fps_max 170
+```
+
+Choose your own cap using the [FPS-cap guide](#nvidia). If you don't use autoexec, remove `+exec autoexec.cfg` and keep only the cap. If the cap is set in launch options, leave it commented out in autoexec.
+
+The upstream guide lists `-exec` for EA. That launcher-specific difference hasn't been verified, so this guide uses the usual engine command `+exec` and asks you to [check that it loads](#validation).
+
+You can also try `-novid` for intro skipping, as reported in the Reddit comments. It's optional, isn't verified here, and doesn't improve in-match FPS. EA app menu names can change between versions.
+
+[Back to guides](#contents)
+
+</details>
+
+### 🎮 Game and PC settings
+
+<a id="in-game"></a>
+
+<details>
+<summary><strong>In-game settings: where to start</strong></summary>
+
+Open Apex's video settings and use this as a starting point. Menu names can change after updates. Start at your monitor's native resolution—the resolution it was designed to display—and lower it if the graphics card can't keep up.
+
+| Setting | Starting point | Tradeoff or check |
+| --- | --- | --- |
+| Display mode | Fullscreen | Compare borderless if needed; measure on your system |
+| Aspect ratio / resolution | Native | Reduced resolution helps mainly when GPU limited |
+| FOV | Keep your accustomed value | Higher FOV can increase rendering load; 110 is not mandatory |
+| FOV ability scaling | Disabled | Stable perceived zoom |
+| Sprint view shake | Minimal | Less camera movement |
+| V-Sync | Disabled in game | See driver profiles for tear-free play |
+| NVIDIA Reflex | Enabled, if supported | Compare Enabled + Boost; extra power/heat may not improve results |
+| Adaptive resolution FPS target | 0 | Consistent resolution; dynamic resolution is an optional GPU-limited tradeoff |
+| Adaptive supersampling | Disabled | Avoid extra rendering load |
+| Anti-aliasing | None initially | TSAA may look smoother but softer; compare motion clarity |
+| Texture streaming budget | Start modestly within available VRAM | Increase for clarity if memory headroom permits; do not blindly choose None |
+| Texture filtering | Bilinear initially | Compare 4×/8× for sharper surfaces and measured cost |
+| Ambient occlusion | Disabled | Less shading cost |
+| Sun shadow coverage / detail | Low | Lower shadow cost |
+| Spot shadow detail | Disabled | Lower shadow cost |
+| Volumetric lighting | Disabled | Lower lighting cost |
+| Dynamic spot shadows | Disabled | Lower shadow cost |
+| Model / map / effects detail | Low, where available | Compare clarity and frame times |
+| Impact marks | Disabled | Less persistent clutter |
+| Ragdolls | Low | Less physics/detail work |
+
+Keep the sensitivity, aim settings, keybinds, audio setup, and gameplay preferences you're comfortable with. Start with 1000 Hz mouse polling if supported; higher rates can increase CPU load. Mouse polling does not prescribe a texture streaming budget. Use the game's performance display to monitor FPS and network behavior, but do not equate ping with input latency.
+
+The [profile snippet](#saved-configs) changes an existing `hud_setting_adsDof` value to `"0"` to try to reduce blur while aiming. Compare ADS screenshots using the same weapon, optic, distance, and scene after a restart. It may not remove every blur effect, and a sharper picture doesn't prove input delay is lower.
+
+For hardware-specific starting points and how to check RAM versus VRAM, see [choosing settings for your PC](#hardware). For beginner file-editing and read-only behavior, see the [walkthrough](#beginners).
+
+[Back to guides](#contents)
+
+</details>
+
+<a id="nvidia"></a>
+
+<details>
+<summary><strong>NVIDIA settings, G-SYNC / V-Sync, and FPS caps</strong></summary>
+
+Open **NVIDIA Control Panel → Manage 3D settings → Program Settings** and select Apex. This lets you change settings for Apex without changing every other game. If it isn't listed, use **Add / Browse** and select the game's actual executable from its install folder; the filename can change between game versions. Take a screenshot of the current settings first.
+
+### Which sync setup are you using?
+
+**G-SYNC/FreeSync and V-Sync aren't the same switch.** G-SYNC or FreeSync lets a supported monitor adjust when it refreshes to match arriving frames. That's what **variable refresh rate (VRR)** means. V-Sync controls when frames are shown to prevent tearing—the visible split where parts of different frames appear on screen together. You can turn V-Sync off and still have G-SYNC enabled.
+
+On NVIDIA, check **Control Panel → Set up G-SYNC**, the monitor's Adaptive-Sync setting, and **Manage 3D settings → Program Settings → Apex → Vertical sync**. Check Apex's in-game V-Sync separately. On AMD, look for **AMD FreeSync** in the display settings of AMD Software and the monitor menu; NVIDIA-specific Reflex and driver controls do not apply.
+
+Notice that **in-game V-Sync is off in both examples below**. Check G-SYNC and the NVIDIA driver's V-Sync setting too; “V-Sync off in Apex” doesn't tell you the whole setup.
+
+| Setting | G-SYNC enabled: prioritize tear-free play | G-SYNC disabled: prioritize responsiveness, allow tearing |
+| --- | --- | --- |
+| Monitor / driver | Enable supported G-SYNC or G-SYNC Compatible operation | G-SYNC off / Fixed Refresh |
+| Driver V-Sync | On | Off |
+| In-game V-Sync | Off | Off |
+| NVIDIA Reflex | Enabled; compare + Boost | Enabled; compare + Boost |
+| FPS cap | Below the monitor's maximum refresh rate, at a value the PC can hold | Start with a value the PC can hold; compare a higher cap or no cap |
+
+#### If G-SYNC is enabled and driver V-Sync is on
+
+Begin with a cap slightly below maximum refresh, such as 141 FPS at 144 Hz, 162 at 165 Hz, or 237 at 240 Hz. These are starting examples, not required values. Reflex with G-SYNC and V-Sync may already impose a lower ceiling; check observed FPS before adding another limiter. Lower the cap further if it overshoots the display's supported range or fights cause persistent drops. The aim is to stay below the monitor's maximum refresh rate, where V-Sync can start making frames wait.
+
+If you use AMD FreeSync, the aim is also to stay within the refresh rates your monitor supports. Use the controls in AMD Software and test the result; NVIDIA-only options such as Reflex won't apply.
+
+#### If G-SYNC/FreeSync is disabled and V-Sync is off
+
+Use a cap that gives repeatable, stable frame times on that PC. There is no automatic “refresh minus three” rule for this setup. The example 360 Hz screen with a 170 FPS cap belongs here. Try another cap the PC can hold if useful, but neither 170 nor an exact fraction such as 180 guarantees tear-free output: an FPS limiter alone does not synchronize frame delivery to the display.
+
+If **G-SYNC/FreeSync is enabled but V-Sync is off**, the monitor can still adjust its refresh rate within its supported range. You may still see tearing, especially near the limits of that range. That's different from turning G-SYNC/FreeSync off completely. If both features are disabled and tearing is unacceptable, consider supported G-SYNC/FreeSync or ordinary V-Sync with its latency tradeoff.
+
+Use `fps_max` in the autoexec **or** `+fps_max N` in launch options, not both. Leave driver Max Frame Rate and third-party limiters off when testing the game cap. If Reflex already limits below the chosen target, that lower observed rate can be expected.
+
+### Other NVIDIA settings to start with
+
+| Setting | Recommendation | Reason |
+| --- | --- | --- |
+| Image Scaling (NIS) | Off at native resolution initially | Can enlarge a lower-resolution image to fit the screen; test the look and performance if the GPU is struggling |
+| DSR / DLDSR factors | Off to start with | Avoid rendering above native resolution for a performance-focused setup |
+| Driver Ambient Occlusion | Off | Use the game's own control |
+| Low Latency Mode | Off with in-game Reflex | Use the game's integrated latency control; do not assume stacking Ultra helps |
+| Max Frame Rate | Off when using the game limiter | Set the cap in one place so you know which setting controls it |
+| Preferred refresh rate | Highest available, if shown | Also select the intended refresh in Windows |
+| Power management | Normal initially | Test Prefer maximum performance per game if clocks fluctuate; watch heat |
+| Texture filtering – Quality | Quality initially | Try High performance if you want; keep it only if extra FPS is worth the change in how textures look |
+| Anisotropic filtering / antialiasing | Application-controlled | Change graphics through the game |
+| Driver FXAA / MFAA | Off initially | Avoid additional filtering overrides |
+| Threaded optimization | Auto | Do not assume an OpenGL driver option improves Apex's DirectX renderer |
+| Shader cache size | Driver default initially | Keep sufficient disk space; enlarge only for an identified cache issue |
+| Triple buffering | Default / Off | The OpenGL option is not an Apex latency tweak |
+
+Do not routinely delete shader caches. Warm up after a game or driver update before comparing stutter. Boost and maximum-performance power modes may increase power use; thermal throttling can erase their benefits. This repository does not apply global driver changes or import a driver profile automatically.
+
+### How the referenced NVIDIA article is used
+
+The GoodTechMaster article is dated 2022. Its application-controlled AA/filtering and Auto threaded-optimization recommendations fit this baseline. High performance texture filtering and larger shader caches remain optional comparisons, not guaranteed improvements. Its general Low Latency Mode discussion does not replace an Apex-specific Reflex setup, and frame caps can help frames arrive more evenly, keep G-SYNC/FreeSync within the display's supported range, and reduce power use. See [notes](#notes) for the differences.
+
+Example driver settings and the 170 FPS / G-SYNC-off configuration are discussed in the [hardware guide](#hardware). Use that as a worked example, not a universal profile.
+
+[Back to guides](#contents)
+
+</details>
 
 <a id="hardware"></a>
 
-## Choose settings for your PC
+<details>
+<summary><strong>Choose settings for your PC + example specs</strong></summary>
 
 Start with what your PC is struggling with. The same graphics card might hold your target FPS at 1080p but struggle at 1440p. An expensive PC can still stutter because of heat, background apps, or the game preparing graphics data after an update.
 
@@ -285,212 +514,16 @@ Screenshots provided as examples show the Apex DX12 program profile, Fixed Refre
 
 Other readers should choose their own resolution, VRAM budget, cap, and presentation profile rather than copying this hardware example wholesale.
 
-[Back to contents](#contents)
+[Back to guides](#contents)
 
-<a id="in-game"></a>
+</details>
 
-## In-game settings
-
-Open Apex's video settings and use this as a starting point. Menu names can change after updates. Start at your monitor's native resolution—the resolution it was designed to display—and lower it if the graphics card can't keep up.
-
-| Setting | Starting point | Tradeoff or check |
-| --- | --- | --- |
-| Display mode | Fullscreen | Compare borderless if needed; measure on your system |
-| Aspect ratio / resolution | Native | Reduced resolution helps mainly when GPU limited |
-| FOV | Keep your accustomed value | Higher FOV can increase rendering load; 110 is not mandatory |
-| FOV ability scaling | Disabled | Stable perceived zoom |
-| Sprint view shake | Minimal | Less camera movement |
-| V-Sync | Disabled in game | See driver profiles for tear-free play |
-| NVIDIA Reflex | Enabled, if supported | Compare Enabled + Boost; extra power/heat may not improve results |
-| Adaptive resolution FPS target | 0 | Consistent resolution; dynamic resolution is an optional GPU-limited tradeoff |
-| Adaptive supersampling | Disabled | Avoid extra rendering load |
-| Anti-aliasing | None initially | TSAA may look smoother but softer; compare motion clarity |
-| Texture streaming budget | Start modestly within available VRAM | Increase for clarity if memory headroom permits; do not blindly choose None |
-| Texture filtering | Bilinear initially | Compare 4×/8× for sharper surfaces and measured cost |
-| Ambient occlusion | Disabled | Less shading cost |
-| Sun shadow coverage / detail | Low | Lower shadow cost |
-| Spot shadow detail | Disabled | Lower shadow cost |
-| Volumetric lighting | Disabled | Lower lighting cost |
-| Dynamic spot shadows | Disabled | Lower shadow cost |
-| Model / map / effects detail | Low, where available | Compare clarity and frame times |
-| Impact marks | Disabled | Less persistent clutter |
-| Ragdolls | Low | Less physics/detail work |
-
-Keep the sensitivity, aim settings, keybinds, audio setup, and gameplay preferences you're comfortable with. Start with 1000 Hz mouse polling if supported; higher rates can increase CPU load. Mouse polling does not prescribe a texture streaming budget. Use the game's performance display to monitor FPS and network behavior, but do not equate ping with input latency.
-
-The [profile snippet](#saved-configs) changes an existing `hud_setting_adsDof` value to `"0"` to try to reduce blur while aiming. Compare ADS screenshots using the same weapon, optic, distance, and scene after a restart. It may not remove every blur effect, and a sharper picture doesn't prove input delay is lower.
-
-For hardware-specific starting points and how to check RAM versus VRAM, see [choosing settings for your PC](#hardware). For beginner file-editing and read-only behavior, see the [walkthrough](#beginners).
-
-[Back to contents](#contents)
-
-<a id="nvidia"></a>
-
-## NVIDIA settings, G-SYNC, and FPS caps
-
-Open **NVIDIA Control Panel → Manage 3D settings → Program Settings** and select Apex. This lets you change settings for Apex without changing every other game. If it isn't listed, use **Add / Browse** and select the game's actual executable from its install folder; the filename can change between game versions. Take a screenshot of the current settings first.
-
-### Which sync setup are you using?
-
-**G-SYNC/FreeSync and V-Sync aren't the same switch.** G-SYNC or FreeSync lets a supported monitor adjust when it refreshes to match arriving frames. That's what **variable refresh rate (VRR)** means. V-Sync controls when frames are shown to prevent tearing—the visible split where parts of different frames appear on screen together. You can turn V-Sync off and still have G-SYNC enabled.
-
-On NVIDIA, check **Control Panel → Set up G-SYNC**, the monitor's Adaptive-Sync setting, and **Manage 3D settings → Program Settings → Apex → Vertical sync**. Check Apex's in-game V-Sync separately. On AMD, look for **AMD FreeSync** in the display settings of AMD Software and the monitor menu; NVIDIA-specific Reflex and driver controls do not apply.
-
-Notice that **in-game V-Sync is off in both examples below**. Check G-SYNC and the NVIDIA driver's V-Sync setting too; “V-Sync off in Apex” doesn't tell you the whole setup.
-
-| Setting | G-SYNC enabled: prioritize tear-free play | G-SYNC disabled: prioritize responsiveness, allow tearing |
-| --- | --- | --- |
-| Monitor / driver | Enable supported G-SYNC or G-SYNC Compatible operation | G-SYNC off / Fixed Refresh |
-| Driver V-Sync | On | Off |
-| In-game V-Sync | Off | Off |
-| NVIDIA Reflex | Enabled; compare + Boost | Enabled; compare + Boost |
-| FPS cap | Below the monitor's maximum refresh rate, at a value the PC can hold | Start with a value the PC can hold; compare a higher cap or no cap |
-
-#### If G-SYNC is enabled and driver V-Sync is on
-
-Begin with a cap slightly below maximum refresh, such as 141 FPS at 144 Hz, 162 at 165 Hz, or 237 at 240 Hz. These are starting examples, not required values. Reflex with G-SYNC and V-Sync may already impose a lower ceiling; check observed FPS before adding another limiter. Lower the cap further if it overshoots the display's supported range or fights cause persistent drops. The aim is to stay below the monitor's maximum refresh rate, where V-Sync can start making frames wait.
-
-If you use AMD FreeSync, the aim is also to stay within the refresh rates your monitor supports. Use the controls in AMD Software and test the result; NVIDIA-only options such as Reflex won't apply.
-
-#### If G-SYNC/FreeSync is disabled and V-Sync is off
-
-Use a cap that gives repeatable, stable frame times on that PC. There is no automatic “refresh minus three” rule for this setup. The example 360 Hz screen with a 170 FPS cap belongs here. Try another cap the PC can hold if useful, but neither 170 nor an exact fraction such as 180 guarantees tear-free output: an FPS limiter alone does not synchronize frame delivery to the display.
-
-If **G-SYNC/FreeSync is enabled but V-Sync is off**, the monitor can still adjust its refresh rate within its supported range. You may still see tearing, especially near the limits of that range. That's different from turning G-SYNC/FreeSync off completely. If both features are disabled and tearing is unacceptable, consider supported G-SYNC/FreeSync or ordinary V-Sync with its latency tradeoff.
-
-Use `fps_max` in the autoexec **or** `+fps_max N` in launch options, not both. Leave driver Max Frame Rate and third-party limiters off when testing the game cap. If Reflex already limits below the chosen target, that lower observed rate can be expected.
-
-### Other NVIDIA settings to start with
-
-| Setting | Recommendation | Reason |
-| --- | --- | --- |
-| Image Scaling (NIS) | Off at native resolution initially | Can enlarge a lower-resolution image to fit the screen; test the look and performance if the GPU is struggling |
-| DSR / DLDSR factors | Off to start with | Avoid rendering above native resolution for a performance-focused setup |
-| Driver Ambient Occlusion | Off | Use the game's own control |
-| Low Latency Mode | Off with in-game Reflex | Use the game's integrated latency control; do not assume stacking Ultra helps |
-| Max Frame Rate | Off when using the game limiter | Set the cap in one place so you know which setting controls it |
-| Preferred refresh rate | Highest available, if shown | Also select the intended refresh in Windows |
-| Power management | Normal initially | Test Prefer maximum performance per game if clocks fluctuate; watch heat |
-| Texture filtering – Quality | Quality initially | Try High performance if you want; keep it only if extra FPS is worth the change in how textures look |
-| Anisotropic filtering / antialiasing | Application-controlled | Change graphics through the game |
-| Driver FXAA / MFAA | Off initially | Avoid additional filtering overrides |
-| Threaded optimization | Auto | Do not assume an OpenGL driver option improves Apex's DirectX renderer |
-| Shader cache size | Driver default initially | Keep sufficient disk space; enlarge only for an identified cache issue |
-| Triple buffering | Default / Off | The OpenGL option is not an Apex latency tweak |
-
-Do not routinely delete shader caches. Warm up after a game or driver update before comparing stutter. Boost and maximum-performance power modes may increase power use; thermal throttling can erase their benefits. This repository does not apply global driver changes or import a driver profile automatically.
-
-### How the referenced NVIDIA article is used
-
-The GoodTechMaster article is dated 2022. Its application-controlled AA/filtering and Auto threaded-optimization recommendations fit this baseline. High performance texture filtering and larger shader caches remain optional comparisons, not guaranteed improvements. Its general Low Latency Mode discussion does not replace an Apex-specific Reflex setup, and frame caps can help frames arrive more evenly, keep G-SYNC/FreeSync within the display's supported range, and reduce power use. See [notes](#notes) for the differences.
-
-Example driver settings and the 170 FPS / G-SYNC-off configuration are discussed in the [hardware guide](#hardware). Use that as a worked example, not a universal profile.
-
-[Back to contents](#contents)
-
-<a id="video-config"></a>
-
-## Editing videoconfig.txt
-
-Start with the in-game graphics menu. It writes the settings in the format your current Apex version expects. Editing `videoconfig.txt` is optional.
-
-The [download](videoconfig.txt) contains only four suggested settings. **Don't replace your complete video config with it.**
-
-1. Apply the [in-game settings](#in-game), then close Apex.
-2. Press **Windows + R**, paste `%USERPROFILE%\Saved Games\Respawn\Apex\local`, and open it. Back up `videoconfig.txt`.
-3. Open your original in Notepad. Find the matching keys from the table below and change their values. If a key isn't there, skip it and use the game menu.
-4. Keep the existing `VideoConfig` block and braces. Don't add a second block or duplicate keys.
-5. Leave your resolution, display mode, texture memory budget (`setting.stream_memory`), version (`setting.configversion`), and all other values as they are.
-6. Save, restart Apex, and check the menu and a short match. Exit normally and look at what the game saved afterward.
-
-| Key | Value in the snippet | Intended change |
-| --- | --- | --- |
-| `setting.mat_vsync_mode` | `0` | In-game V-Sync off; driver V-Sync depends on the [setup you choose](#nvidia) |
-| `setting.mat_antialias_mode` | `0` | Anti-aliasing off |
-| `setting.volumetric_lighting` | `0` | Volumetric lighting off |
-| `setting.particle_cpu_level` | `0` | Low effects detail |
-
-These mappings come from the reference config and still need checking in the current game. If a value keeps changing back, it may have changed meaning or stopped being supported. Read-only won't fix that.
-
-Once you're happy with the settings, you can use the [optional read-only steps](#beginners). Leave the file writable while testing and when a game update needs to update its format. The ADS blur line belongs in the [profile snippet](#saved-configs), not this file.
-
-[Back to contents](#contents)
-
-<a id="steam"></a>
-
-## Steam launch options
-
-In Steam, right-click **Apex Legends → Properties → General**. Find **Launch Options** and save a copy of anything already in the box.
-
-If you're using the optional autoexec, first put it in **Manage → Browse local files → cfg**, then add:
-
-```text
-+exec autoexec.cfg
-```
-
-### Adding an FPS cap
-
-`+fps_max` tells the game the highest FPS you want it to render. It doesn't guarantee your PC can hold that number.
-
-For the example 170 FPS setup:
-
-```text
-+exec autoexec.cfg +fps_max 170
-```
-
-If you're skipping autoexec, just use:
-
-```text
-+fps_max 170
-```
-
-Replace 170 with the target you chose in the [FPS-cap guide](#nvidia). For example, 141 FPS is one starting point for a 144 Hz screen with G-SYNC enabled and driver V-Sync on. It isn't the right cap for every PC.
-
-If the cap is set here, leave `fps_max` commented out in autoexec and the driver's Max Frame Rate setting off. Keeping it in one place makes troubleshooting much easier.
-
-### Skipping the intro
-
-The Reddit comments suggest `-novid` after reporting that `-dev` stopped skipping the intro. You can try:
-
-```text
--novid +exec autoexec.cfg +fps_max 170
-```
-
-Keep only the parts you're using. Intro skipping is a startup convenience, not an FPS tweak. If the game ignores `-novid`, remove it.
-
-Leave `-high`, `-threads`, old renderer flags, and network overrides out of the starting setup. There's no demonstrated benefit for your PC just because another guide lists them.
-
-[Back to contents](#contents)
-
-<a id="ea-app"></a>
-
-## EA app launch options
-
-Open Apex's game properties/manage menu in the EA app. Find the installation location and open its `cfg` folder if you're using autoexec. Back up an existing autoexec before merging any lines.
-
-In the game properties, find **Advanced launch options** or the similarly named field. Save a copy of the old arguments, then use the same starting command:
-
-```text
-+exec autoexec.cfg
-```
-
-To include an example 170 FPS cap:
-
-```text
-+exec autoexec.cfg +fps_max 170
-```
-
-Choose your own cap using the [FPS-cap guide](#nvidia). If you don't use autoexec, remove `+exec autoexec.cfg` and keep only the cap. If the cap is set in launch options, leave it commented out in autoexec.
-
-The upstream guide lists `-exec` for EA. That launcher-specific difference hasn't been verified, so this guide uses the usual engine command `+exec` and asks you to [check that it loads](#validation).
-
-You can also try `-novid` for intro skipping, as reported in the Reddit comments. It's optional, isn't verified here, and doesn't improve in-match FPS. EA app menu names can change between versions.
-
-[Back to contents](#contents)
+### 🛠️ Troubleshooting and extras
 
 <a id="validation"></a>
 
-## Check whether a change actually helped
+<details>
+<summary><strong>Did the change help? Testing and going back</strong></summary>
 
 Try to change one thing at a time. If you change ten settings and the game feels worse, it's hard to know which one to undo.
 
@@ -529,11 +562,14 @@ Close Apex. Restore the original files and launch options from your backup, alon
 
 Remove read-only from any file that needs editing, restart, and check that the old behavior is back. Don't keep a tweak just because it sounds more “competitive.”
 
-[Back to contents](#contents)
+[Back to guides](#contents)
+
+</details>
 
 <a id="windows"></a>
 
-## Windows and PC troubleshooting
+<details>
+<summary><strong>Stuttering, Windows Fast Startup, and BIOS Fast Boot</strong></summary>
 
 If the game still hitches, check these before adding more config commands. You don't need to change everything here just because the PC is older.
 
@@ -585,11 +621,14 @@ Use the [validation guide](#validation) to separate a reproducible improvement f
 
 For O&O ShutUp10++, Winaero Tweaker, Autoruns, and measurement utilities, see [optional tools](#tools). These are optional diagnostic/customization choices, not prerequisites or guaranteed FPS improvements.
 
-[Back to contents](#contents)
+[Back to guides](#contents)
+
+</details>
 
 <a id="tools"></a>
 
-## Optional tools
+<details>
+<summary><strong>Optional tools: what they do and when to use them</strong></summary>
 
 You don't need to download everything in this list. Pick a tool only when you have a reason to use it. Some help measure performance; others change Windows preferences and may do nothing for FPS. They haven't been independently tested for this guide. Use the official links below and check that the current version supports your system.
 
@@ -629,11 +668,14 @@ Changing a privacy setting is fine if that's what you want. Just don't assume it
 
 For Windows Fast Startup, BIOS Fast Boot, and simpler checks, see [Windows troubleshooting](#windows).
 
-[Back to contents](#contents)
+[Back to guides](#contents)
+
+</details>
 
 <a id="advanced-tuning"></a>
 
-## Want to go further? Optional advanced tuning
+<details>
+<summary><strong>Going further: optional GPU and system tuning</strong></summary>
 
 If the game is already running well, you can stop there. The guides below go much further into PC tuning. Read them as background, not as a list of things every Apex player needs to do. You don't need to overclock, flash a BIOS, or edit the Windows registry to use these config files.
 
@@ -674,11 +716,14 @@ The linked guides include blanket SMT/CPU-idle changes, timer and interrupt-affi
 
 Keep SMT enabled by default on the example 5700X3D; investigate a specific scheduling problem with controlled measurements rather than treating SMT-off as a universal improvement. Keep Reflex Enabled as the starting point and compare + Boost on the actual PC; neither mode is automatically best for every workload.
 
-[Back to contents](#contents)
+[Back to guides](#contents)
+
+</details>
 
 <a id="screenshots"></a>
 
-## Screenshot checklist
+<details>
+<summary><strong>Screenshot checklist: help illustrate the guide</strong></summary>
 
 Screenshots are most useful when they show exactly where to click and what to look for. Label hardware-specific values **Example PC settings**; they are not universal targets. The following checklist describes captures to add to the guide, not images already embedded on this page.
 
@@ -720,11 +765,20 @@ Use short filenames such as `steam-launch-options.png`, `saved-games-local.png`,
 
 Example caption: **Example PC settings — 5700X3D / RTX 3060 Ti, 170 FPS cap, G-SYNC off. Choose values suitable for the PC and display.** A screenshot shows a configuration; it does not demonstrate an FPS or latency gain by itself.
 
-[Back to contents](#contents)
+[Back to guides](#contents)
+
+</details>
+
+---
 
 <a id="notes"></a>
 
 ## Notes
+
+Inspired by [DominicKlmNL's Apex config](https://github.com/DominicKlmNL/apex-legends-config). Example PC settings and screenshots are for illustration; choose values that suit the PC and display.
+
+<details>
+<summary><strong>Further reading, compatibility, and why some advice differs</strong></summary>
 
 Reference review: 2026-10-07. Current-client behavior and performance remain unverified.
 
@@ -739,8 +793,7 @@ Reference review: 2026-10-07. Current-client behavior and performance remain unv
 
 The upstream author labels many commands as working. Those labels are upstream claims, not verification of this repository or the current client. This project matches the reference's main categories while curating its settings rather than mirroring every override.
 
-<details>
-<summary><strong>Why some recommendations differ from the linked guides</strong></summary>
+### Why some recommendations differ from the linked guides
 
 
 - Include `hud_setting_adsDof "0"`, already present upstream, in the profile merge fragment as an optional ADS blur preference. Do not invent a generic `dof 0` command.
@@ -784,11 +837,10 @@ The article also conflates NVIDIA Image Scaling with AI upscaling and describes 
 
 </details>
 
-[Back to contents](#contents)
-
 <a id="third-party"></a>
 
-## Third-party notices
+<details>
+<summary><strong>Credits and third-party license notice</strong></summary>
 
 Configuration portions adapted from DominicKlmNL/apex-legends-config, commit 5d5ab6a0c93c3a9169b9f3c6f2d10e85b245f2b3.
 
@@ -816,10 +868,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[Back to contents](#contents)
+</details>
 
 <a id="project-license"></a>
 
-## Project license
+<details>
+<summary><strong>Project license</strong></summary>
 
 The repository retains its existing [GPL-3.0 license](LICENSE). Upstream-derived settings are credited in [notes](#notes), with the upstream MIT notice preserved in [third-party notices](#third-party).
+
+</details>
+
+[Back to top](#apex-legends-settings)
