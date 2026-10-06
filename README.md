@@ -848,11 +848,3 @@ Eriksson. (2022, August 12). *Ultimate guide NVIDIA Control Panel – Optimizati
 <a id="ref-reddit"></a>
 
 gab0rik. (n.d.). *After years of regularly finetuning my pc, i decided to make an Apex Legends Config repository. (Incl. autoexec;videoconfig;nvidia settings;ingame settings; launch options)* [Online forum post]. Reddit. https://www.reddit.com/r/apexlegends/comments/1w4ljsh/after_years_of_regularly_finetuning_my_pc_i/
-
-<a id="ref-paperclip"></a>
-
-paperclipai. (n.d.). *Paperclip* [GitHub repository]. https://github.com/paperclipai/paperclip
-
-<a id="ref-win11debloat"></a>
-
-Raphire. (n.d.). *Win11Debloat* [GitHub repository]. https://github.com/Raphire/Win11Debloat
