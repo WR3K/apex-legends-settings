@@ -9,7 +9,8 @@
   <a href="#quick-setup"><strong>Quick start</strong></a> &middot;
   <a href="#downloads"><strong>Downloads</strong></a> &middot;
   <a href="#contents"><strong>Guides</strong></a> &middot;
-  <a href="#notes"><strong>Notes</strong></a>
+  <a href="#notes"><strong>Notes</strong></a> &middot;
+  <a href="#references"><strong>References</strong></a>
 </p>
 
 <table>
@@ -193,7 +194,7 @@ For the ADS setting, restart Apex and compare the same weapon, optic, and scene.
 
 Check that you've launched Apex using this Windows account. If Saved Games was moved, press **Windows + R** and enter `shell:SavedGames`, then look for `Respawn\Apex`.
 
-If the game hasn't created a particular key, skip it. Don't create a full settings file from the snippet or assume pasting the line somewhere else will make it work. The file locations and example keys also appear in an [older community reference](#notes); the files your installed game creates are what you should work from.
+If the game hasn't created a particular key, skip it. Don't create a full settings file from the snippet or assume pasting the line somewhere else will make it work. The file locations and example keys also appear in an [older community reference](#ref-apexconfigs); the files your installed game creates are what you should work from.
 
 Leave settings/profile writable while testing, and usually afterward too, so your binds and preferences can save. Making them read-only won't improve FPS. The mouse-acceleration line is a preference, not a proven latency fix. These snippets haven't been tested in a running client for this guide.
 
@@ -679,8 +680,8 @@ For Windows Fast Startup, BIOS Fast Boot, and simpler checks, see [Windows troub
 
 If the game is already running well, you can stop there. The guides below go much further into PC tuning. Read them as background, not as a list of things every Apex player needs to do. You don't need to overclock, flash a BIOS, or edit the Windows registry to use these config files.
 
-- [Calypto's Latency Guide](https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit?usp=sharing) covers background processes, driver scheduling, input, displays, and extensive system changes. The PDF copy contains advice for several Windows and hardware generations; check applicability before using any recommendation.
-- [A slightly better way to overclock and tweak your Nvidia GPU](https://docs.google.com/document/d/14ma-_Os3rNzio85yBemD-YSpF_1z75mZJz1UdzmW8GE/edit?usp=sharing), by Cancerogeno, includes a **mid-2026 update** on newer RTX cards followed by its older Pascal/Turing guide. The example RTX 3060 Ti is **Ampere**, so neither an old Pascal/Turing voltage example nor an RTX 40/50-series result is a ready-made preset for it.
+- [Calypto's Latency Guide](#ref-calypto) covers background processes, driver scheduling, input, displays, and extensive system changes. The PDF copy contains advice for several Windows and hardware generations; check applicability before using any recommendation.
+- [A slightly better way to overclock and tweak your Nvidia GPU](#ref-gpu-guide), by Cancerogeno, includes a **mid-2026 update** on newer RTX cards followed by its older Pascal/Turing guide. The example RTX 3060 Ti is **Ampere**, so neither an old Pascal/Turing voltage example nor an RTX 40/50-series result is a ready-made preset for it.
 
 Both PDF copies were reviewed for this guide. Direct access to the Google Docs links returned HTTP 403, so their live revisions were not checked. The [notes](#notes) explain which points informed the recommendations.
 
@@ -720,76 +721,17 @@ Keep SMT enabled by default on the example 5700X3D; investigate a specific sched
 
 </details>
 
-<a id="screenshots"></a>
-
-<details>
-<summary><strong>Screenshot checklist: help illustrate the guide</strong></summary>
-
-Screenshots are most useful when they show exactly where to click and what to look for. Label hardware-specific values **Example PC settings**; they are not universal targets. The following checklist describes captures to add to the guide, not images already embedded on this page.
-
-### Most useful captures
-
-| Capture | Where to open it | What should be visible |
-| --- | --- | --- |
-| Find the game installation | Steam → Library → right-click Apex → Manage → Browse local files | The menu item; a second image can show the opened `cfg` folder and `autoexec.cfg` |
-| Set launch options | Steam → Apex → Properties → General | Launch Options field, showing the example `+exec autoexec.cfg +fps_max 170`; caption autoexec as optional and 170 as an example |
-| Find saved settings | Windows + R → `%USERPROFILE%\Saved Games\Respawn\Apex\local` | The Run path, then File Explorer showing `settings.cfg` and `videoconfig.txt` with extensions visible |
-| Find saved profile | Windows + R → `%USERPROFILE%\Saved Games\Respawn\Apex\profile` | File Explorer showing `profile.cfg`; make the different folder name clear |
-| Edit a setting | Right-click the original `profile.cfg` → Open with → Notepad | The existing `hud_setting_adsDof` line and its value; show only relevant lines and edit only if the key exists |
-| Save a new autoexec correctly | Notepad → File → Save As | Filename `autoexec.cfg`, Save as type **All files**, and the destination `cfg` folder; cancel if demonstrating over an existing file |
-| Set optional read-only | Right-click `videoconfig.txt` → Properties → General | The file name, Read-only checkbox, and Apply button; caption that it protects the file, not live game settings |
-| Verify display refresh | Windows Settings → System → Display → Advanced display | Selected gaming display, resolution, and refresh rate; caption values as an example |
-| Configure graphics | Apex → Settings → Video / Advanced Video | Display mode, resolution, Reflex, V-Sync, adaptive resolution, texture budget, and the remaining graphics options; take overlapping images while scrolling |
-| Configure the driver | NVIDIA Control Panel → Manage 3D settings → Program Settings → Apex | Apex selected and all relevant rows; use overlapping top/middle/bottom captures rather than tiny text in one image |
-
-For the NVIDIA example, include Low Latency Mode, Max Frame Rate, Monitor Technology, Power management mode, Preferred refresh rate, texture filtering, and Vertical sync. Clearly label any example value that differs from the guide's starting recommendation, such as forced Threaded optimization On versus the recommended Auto.
-
-### Optional extra captures
-
-| Capture | Where / method | Purpose |
-| --- | --- | --- |
-| Show filename extensions | File Explorer → View → Show → File name extensions (Windows 11) | Explain how to spot `autoexec.cfg.txt` |
-| EA app equivalent | Apex game management/properties → installation location and launch arguments | Cover readers using the other launcher; capture only an installed app's real UI |
-| G-SYNC configuration | NVIDIA Control Panel → Set up G-SYNC, if available | Show whether enabled and which display is selected; do not change it just to match an example |
-| Example hardware | Task Manager → Performance → CPU, Memory, GPU | Show model names and RAM/dedicated VRAM; multiple cropped images are clearer than one crowded screen |
-| ADS blur comparison | Firing range, identical weapon/optic/position/aim point before and after the profile edit and full restart | Test whether the DoF preference has a visible effect; label game version and values, including if no change is observed |
-| Frame-time comparison | The chosen capture tool's completed results page | Show the same capture duration and scene for baseline/candidate; include cap, resolution, average FPS, 1% low, and frame-time plot |
-| Windows Fast Startup | Control Panel → Power Options → Choose what the power buttons do | Explain the optional troubleshooting checkbox, without implying it increases FPS |
-| BIOS Fast Boot | The PC/motherboard's actual firmware page; use its screenshot feature or a clear photo | Optional and motherboard-specific; label model and firmware version, and avoid changing unrelated options |
-
-### Capture and caption tips
-
-Use **Windows + Shift + S** for a selected area, or the game's normal screenshot feature for a full-resolution ADS comparison. Save readable PNG images. Keep enough of the window title, folder path, or selected application to explain the context. Hide account names, email addresses, device serials, and personal folder names before sharing; leave setting names and values readable. Do not change a setting merely to take a screenshot.
-
-Use short filenames such as `steam-launch-options.png`, `saved-games-local.png`, `videoconfig-read-only.png`, and `nvidia-program-settings-01.png`. When adding images to the repository, store them under `assets/screenshots/` and embed them next to the matching instructions in this README, with descriptive alt text.
-
-Example caption: **Example PC settings — 5700X3D / RTX 3060 Ti, 170 FPS cap, G-SYNC off. Choose values suitable for the PC and display.** A screenshot shows a configuration; it does not demonstrate an FPS or latency gain by itself.
-
-[Back to guides](#contents)
-
-</details>
-
 ---
 
 <a id="notes"></a>
 
 ## Notes
 
-Inspired by [DominicKlmNL's Apex config](https://github.com/DominicKlmNL/apex-legends-config). Example PC settings and screenshots are for illustration; choose values that suit the PC and display.
-
 <details>
-<summary><strong>Further reading, compatibility, and why some advice differs</strong></summary>
+<summary><strong>Compatibility and why some advice differs</strong></summary>
 
 Reference review: 2026-10-07. Current-client behavior and performance remain unverified.
 
-| Reference | What to know |
-| --- | --- |
-| [Calypto's Latency Guide](https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit?usp=sharing) | Reviewed the PDF copy. Background for latency diagnostics and display behavior; broad system-tweak and hardware claims are not independently verified. Direct Google Docs access returned HTTP 403 |
-| [A slightly better way to overclock and tweak your Nvidia GPU](https://docs.google.com/document/d/14ma-_Os3rNzio85yBemD-YSpF_1z75mZJz1UdzmW8GE/edit?usp=sharing) | Reviewed the PDF copy by Cancerogeno, including its mid-2026 update and older Pascal/Turing sections. No proposed tuning was executed or benchmarked. Direct Google Docs access returned HTTP 403 |
-| [240hz/ApexConfigs file layout](https://github.com/240hz/ApexConfigs/tree/4088cb3e11b4853d83b9947e81ac8a41479d15f3) | Historical file paths and example key locations inspected at commit `4088cb3e11b4853d83b9947e81ac8a41479d15f3` (2019-06-05). Used for layout reference only; its old exec-chain instructions and tuning claims are not adopted, and it does not verify current compatibility |
-| [DominicKlmNL/apex-legends-config](https://github.com/DominicKlmNL/apex-legends-config) | Inspected README, configs, launcher guides, in-game guide, NVIDIA guide, and MIT license at commit `5d5ab6a0c93c3a9169b9f3c6f2d10e85b245f2b3` |
-| [Reddit configuration discussion](https://www.reddit.com/r/apexlegends/comments/1w4ljsh/after_years_of_regularly_finetuning_my_pc_i/) | Reviewed a transcript of the post and comments; direct retrieval returned HTTP 403. Community reports are not controlled benchmarks. |
-| [GoodTechMaster NVIDIA guide](https://www.goodtechmaster.com/ultimate-guide-nvidia-control-panel-optimization-for-gaming/) | Reviewed a copy of the article text, dated August 12, 2022; direct retrieval returned HTTP 403. General driver guidance, not current Apex-specific validation. |
 
 The upstream author labels many commands as working. Those labels are upstream claims, not verification of this repository or the current client. This project matches the reference's main categories while curating its settings rather than mirroring every override.
 
@@ -844,7 +786,7 @@ The article also conflates NVIDIA Image Scaling with AI upscaling and describes 
 
 Configuration portions adapted from DominicKlmNL/apex-legends-config, commit 5d5ab6a0c93c3a9169b9f3c6f2d10e85b245f2b3.
 
-Source: https://github.com/DominicKlmNL/apex-legends-config
+[Apex legends config](#ref-apex-config)
 
 MIT License
 
@@ -875,8 +817,42 @@ SOFTWARE.
 <details>
 <summary><strong>Project license</strong></summary>
 
-The repository retains its existing [GPL-3.0 license](LICENSE). Upstream-derived settings are credited in [notes](#notes), with the upstream MIT notice preserved in [third-party notices](#third-party).
+The repository retains its existing [GPL-3.0 license](LICENSE). Upstream-derived settings are credited in [references](#references), with the upstream MIT notice preserved in [third-party notices](#third-party).
 
 </details>
 
-[Back to top](#apex-legends-settings)
+<a id="references"></a>
+
+## References
+
+<a id="ref-apexconfigs"></a>
+
+240hz. (2019, June 5). *ApexConfigs* [GitHub repository]. https://github.com/240hz/ApexConfigs/tree/4088cb3e11b4853d83b9947e81ac8a41479d15f3
+
+<a id="ref-calypto"></a>
+
+Calypto. (n.d.). *Calypto's latency guide*. https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
+
+<a id="ref-gpu-guide"></a>
+
+Cancerogeno. (2026). *A slightly better way to overclock and tweak your Nvidia GPU*. https://docs.google.com/document/d/14ma-_Os3rNzio85yBemD-YSpF_1z75mZJz1UdzmW8GE/edit
+
+<a id="ref-apex-config"></a>
+
+DominicKlmNL. (2026, September 10). *Apex legends config* [GitHub repository]. https://github.com/DominicKlmNL/apex-legends-config/tree/5d5ab6a0c93c3a9169b9f3c6f2d10e85b245f2b3
+
+<a id="ref-nvidia-article"></a>
+
+Eriksson. (2022, August 12). *Ultimate guide NVIDIA Control Panel – Optimization for gaming*. GoodTechMaster. https://www.goodtechmaster.com/ultimate-guide-nvidia-control-panel-optimization-for-gaming/
+
+<a id="ref-reddit"></a>
+
+gab0rik. (n.d.). *After years of regularly finetuning my pc, i decided to make an Apex Legends Config repository. (Incl. autoexec;videoconfig;nvidia settings;ingame settings; launch options)* [Online forum post]. Reddit. https://www.reddit.com/r/apexlegends/comments/1w4ljsh/after_years_of_regularly_finetuning_my_pc_i/
+
+<a id="ref-paperclip"></a>
+
+paperclipai. (n.d.). *Paperclip* [GitHub repository]. https://github.com/paperclipai/paperclip
+
+<a id="ref-win11debloat"></a>
+
+Raphire. (n.d.). *Win11Debloat* [GitHub repository]. https://github.com/Raphire/Win11Debloat
