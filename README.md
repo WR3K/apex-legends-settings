@@ -6,18 +6,24 @@ This is a starting point, not a measured performance guarantee. Includes WR3K's 
 
 ## Downloads
 
-The instructions are all on this page. Keep these two configuration files separate for copying or downloading:
+There are **four configuration files** below, plus this README and the project license. You do not need to install all four. `settings.cfg`, `profile.cfg`, and `videoconfig.txt` are **merge fragments**, not full replacement files. Back up your game-generated originals and edit only matching existing keys. Do not overwrite them with these downloads.
 
-| File | Purpose | Raw file |
-| --- | --- | --- |
-| [autoexec.cfg](autoexec.cfg) | Startup commands, including the ADS DoF preference | [Open raw autoexec](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/autoexec.cfg) |
-| [videoconfig.txt](videoconfig.txt) | **Merge-only fragment:** do not replace your full game-generated file | [Open raw video fragment](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/videoconfig.txt) |
+| File | Purpose | Exact destination | Raw file |
+| --- | --- | --- | --- |
+| [autoexec.cfg](autoexec.cfg) | Optional startup commands; current-client support unverified | `<Apex installation>\cfg\autoexec.cfg` | [Raw autoexec](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/autoexec.cfg) |
+| [settings.cfg](settings.cfg) | Optional mouse-acceleration preference; preserve your binds and sensitivity | `%USERPROFILE%\Saved Games\Respawn\Apex\local\settings.cfg` | [Raw settings fragment](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/settings.cfg) |
+| [videoconfig.txt](videoconfig.txt) | Graphics settings fragment; preserve resolution and VRAM budget | `%USERPROFILE%\Saved Games\Respawn\Apex\local\videoconfig.txt` | [Raw video fragment](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/videoconfig.txt) |
+| [profile.cfg](profile.cfg) | ADS DoF preference; preserve other gameplay preferences | `%USERPROFILE%\Saved Games\Respawn\Apex\profile\profile.cfg` | [Raw profile fragment](https://raw.githubusercontent.com/WR3K/apex-legends-settings/main/profile.cfg) |
+
+`<Apex installation>` means the folder opened by Steam's **Browse local files** or the EA app's install-location control; it is not text to paste into Windows Run. The Saved Games paths can be pasted into Run and may differ if you relocated Saved Games. Our `profile.cfg` is an Apex preferences fragment, **not** an NVIDIA driver profile.
 
 For download and Notepad instructions, start with the [beginner walkthrough](#beginners).
 
 ## Contents
 
 - [Quick setup](#quick-setup)
+- [Autoexec support and removal](#autoexec-status)
+- [Settings and profile files](#saved-configs)
 - [Beginner walkthrough](#beginners)
 - [Choose settings for your PC](#hardware)
 - [In-game settings](#in-game)
@@ -36,14 +42,55 @@ For download and Notepad instructions, start with the [beginner walkthrough](#be
 
 ## Quick setup
 
-1. Close Apex. Back up existing launch options, `<Apex install>/cfg/autoexec.cfg`, and `%USERPROFILE%\Saved Games\Respawn\Apex\local\videoconfig.txt`. Take screenshots of game and NVIDIA settings.
+1. Close Apex. Back up existing launch options and all original files you intend to edit from the [destination table](#downloads). Take screenshots of game and NVIDIA settings.
 2. Choose a presentation profile in [NVIDIA settings](#nvidia). Apply the [in-game baseline](#in-game) first and benchmark it before adding config overrides.
-3. Review [autoexec.cfg](autoexec.cfg), merge it with your existing config if necessary, and place it in the game's `cfg` directory. Keep the filename `autoexec.cfg`, not `autoexec.cfg.txt`.
-4. Add `+exec autoexec.cfg` in your launcher's launch arguments. See the [Steam](#steam) or [EA app](#ea-app) instructions below.
+3. If using the optional startup config, review [autoexec.cfg](autoexec.cfg), merge it with your existing config if necessary, and place it in the game's `cfg` directory. Keep the filename `autoexec.cfg`, not `autoexec.cfg.txt`.
+4. Only if using autoexec, add `+exec autoexec.cfg` in your launcher's launch arguments. See the [Steam](#steam) or [EA app](#ea-app) instructions below.
 5. Optionally merge the video config fragment following its guide. **Do not replace your full game-generated video config with this fragment.** Preserve display, resolution, texture budget, and version fields.
-6. Restart, verify settings and ADS appearance, then follow the validation guide. Keep only changes that improve your measurements or preferred appearance.
+6. Optionally merge [settings.cfg](settings.cfg) and [profile.cfg](profile.cfg) following the [saved config instructions](#saved-configs).
+7. Restart, verify settings and ADS appearance, then follow the validation guide. Keep only changes that improve your measurements or preferred appearance.
 
 No installer, account credentials, build tools, or background services are required. Applying and measuring these settings requires your Windows Apex installation.
+
+<a id="autoexec-status"></a>
+
+## Autoexec support and removal
+
+**Status as of 2026-10-07: startup autoexec is unverified here, not confirmed removed.** The supplied community thread reports that mid-game `exec` reload binds stopped working. That does not establish that `+exec autoexec.cfg` at launch stopped working, and a file loading does not establish that every command inside it is accepted. The reference repository still documents startup loading; this is community evidence, not a current-game test.
+
+Autoexec stays available as an **optional** file. Follow the [execution check](#validation) before relying on it. In-game controls already cover its active viewing preferences; autoexec is not necessary for the baseline. The ADS DoF preference now lives in the `profile.cfg` fragment, so it does not depend on autoexec executing.
+
+If startup loading does not work on your installation after checking the folder, extension, and launch options:
+
+1. Close Apex. Remove `+exec autoexec.cfg` from Steam/EA launch options; keep your chosen FPS cap. WR3K's no-autoexec launch options are simply `+fps_max 170`.
+2. Move an autoexec you installed from this repository into your backup folder. If you merged it with an existing autoexec, restore that original instead of deleting someone else's preferences.
+3. Set FOV ability scaling and sprint view shake in the game menu. Apply the saved-file fragments only to matching keys that your game generated.
+4. Restart and recheck. Record the game version and failed test rather than describing all autoexec support as removed on every client.
+
+Do not add a runtime reload bind or an `exec` chain through profile/settings files as a workaround. Unsupported commands do not become supported when moved to another file.
+
+[Back to contents](#contents)
+
+<a id="saved-configs"></a>
+
+## Settings and profile files
+
+Launch Apex once, save your preferences in the menus, and exit normally so it can generate its own files. Close the game before editing them. Use **Windows + R**, paste the folder path below, and press Enter. For Notepad and filename help, see the [beginner walkthrough](#beginners).
+
+| Open this folder | Find this file | What to do |
+| --- | --- | --- |
+| `%USERPROFILE%\Saved Games\Respawn\Apex\local` | `settings.cfg` | Back up the original. If `m_acceleration` already exists, optionally change its value to `"0"`. Leave binds, sensitivity, ADS multipliers, and all other lines intact |
+| `%USERPROFILE%\Saved Games\Respawn\Apex\profile` | `profile.cfg` | Back up the original. If `hud_setting_adsDof` already exists, change its value to `"0"`, save, restart, and compare ADS appearance |
+
+Edit the existing line instead of appending a duplicate. **Do not copy these short fragments over the full files.** Do not add `+exec settings.cfg` or `+exec profile.cfg`; they are game-managed saved preferences, not additional startup scripts. These paths and example key locations are documented in a historical community reference; verify against what your installed client generates.
+
+If a file or key is missing, do not create a replacement from our fragment. Check the Windows account and relocated Saved Games folder (`shell:SavedGames`), then use the available in-game control. An absent ADS DoF key means this method is unverified for that installation; do not promise that pasting it elsewhere will work.
+
+Keep settings/profile writable during testing and normally thereafter so binds and preferences can save. Read-only is optional file protection, not a performance setting, and can prevent permanent menu changes. See the [read-only explanation](#beginners). It is not required to apply these fragments.
+
+Neither fragment sets your sensitivity, controller settings, resolution, or FPS cap. `m_acceleration "0"` is an optional input preference, not a proven latency improvement. Neither fragment's behavior has been tested in a running Apex client here.
+
+[Back to contents](#contents)
 
 <a id="beginners"></a>
 
@@ -98,7 +145,7 @@ Do not guess a Steam drive letter or put the autoexec in the Windows Saved Games
 4. Find `videoconfig.txt`. `%USERPROFILE%` expands to your Windows user folder; you do not need to type your username.
 5. If the folder is missing, use **Windows + R → `shell:SavedGames`** and look for **Respawn → Apex → local**. Saved Games may have been relocated. Confirm you have launched Apex under this Windows account.
 
-These are two different folders: the install's `cfg` folder holds the autoexec; Saved Games holds the video config.
+There are three destination folders: the install's `cfg` folder holds autoexec; Saved Games `local` holds settings/video config; Saved Games `profile` holds profile.cfg. See the [destination table](#downloads).
 
 ### Back up and open files in Notepad
 
@@ -234,7 +281,7 @@ Apply settings exposed by your current client. Names and available controls can 
 
 Keep sensitivity, ADS multipliers, keybinds, audio channels, and gameplay preferences personal. Start with 1000 Hz mouse polling if supported; higher rates can increase CPU load. Mouse polling does not prescribe a texture streaming budget. Use the game's performance display to monitor FPS and network behavior, but do not equate ping with input latency.
 
-The autoexec requests `hud_setting_adsDof "0"`. Compare ADS screenshots using the same weapon, optic, distance, and scene after a restart. It is a best-effort blur preference, not proof of lower latency; some optics and post-processing may remain unchanged.
+The profile fragment requests `hud_setting_adsDof "0"` in an existing saved preference. Compare ADS screenshots using the same weapon, optic, distance, and scene after a restart. It is a best-effort blur preference, not proof of lower latency; some optics and post-processing may remain unchanged.
 
 For hardware-specific starting points and how to check RAM versus VRAM, see [choosing settings for your PC](#hardware). For beginner file-editing and read-only behavior, see the [walkthrough](#beginners).
 
@@ -308,7 +355,7 @@ Prefer the in-game menu: it generates settings appropriate to the current client
 | `setting.volumetric_lighting` | Volumetric lighting disabled |
 | `setting.particle_cpu_level` | Low effects detail |
 
-These mappings come from the reference config and require a current-client check. The fragment deliberately omits upstream's fixed 2560×1440 resolution, texture allocation, config version, and undocumented shadow overrides. ADS DoF belongs in the autoexec, not this fragment.
+These mappings come from the reference config and require a current-client check. The fragment deliberately omits upstream's fixed 2560×1440 resolution, texture allocation, config version, and undocumented shadow overrides. The ADS DoF preference is covered by the [profile fragment](profile.cfg), not the video fragment.
 
 ### Optional read-only after testing
 
@@ -400,7 +447,7 @@ Repository checks only establish file structure and documentation consistency. T
 
 Fully exit and relaunch Apex after editing an autoexec. The supplied Reddit discussion reports that runtime `exec` keybinds stopped working; neither a reload bind nor an `echo` line is a reliable execution check.
 
-Temporarily enable an obvious cap such as `fps_max "60"` in autoexec and remove other manual caps. Restart and check the firing range, where your baseline must previously have exceeded 60 FPS. A 60 FPS ceiling is evidence that the file executed, not that every command works. Restore your chosen cap after the check. If the check fails, verify the real installation folder, filename extension, launch arguments, and competing limits.
+Temporarily enable an obvious cap such as `fps_max "60"` in autoexec and remove other manual caps. Restart and check the firing range, where your baseline must previously have exceeded 60 FPS. A 60 FPS ceiling is evidence that the file executed, not that every command works. For a stronger check, repeat with a different cap such as 90 FPS if the uncapped baseline exceeds it; observed FPS should follow both changes after separate restarts. Restore your chosen cap after the check. If the check fails, verify the real installation folder, filename extension, launch arguments, and competing limits.
 
 Check ADS DoF separately using identical before/after scenes and full restarts. Keep an unmodified backup. If no visible difference occurs, report the setting as unverified/ineffective on that client rather than adding unrelated rendering overrides.
 
@@ -423,7 +470,7 @@ FPS is not a measurement of click-to-photon latency. Record PC latency only when
 
 ### Roll back
 
-Close the game. Restore your original autoexec, video config, and launch options from backup; if you had no autoexec before, remove the added file and its launch argument. Restore game and NVIDIA settings from your screenshots, or reset only the Apex driver profile if appropriate. Clear read-only on the video config if it was previously enabled. Restart and check the original behavior.
+Close the game. Restore any edited autoexec, settings.cfg, profile.cfg, video config, and launch options from backup; if you had no autoexec before, remove the added file and its launch argument. Restore game and NVIDIA settings from your screenshots, or reset only the Apex driver profile if appropriate. Clear read-only on the video config if it was previously enabled. Restart and check the original behavior.
 
 [Back to contents](#contents)
 
@@ -535,6 +582,7 @@ Reference review: 2026-10-07. No local Apex runtime testing was available.
 
 | Source | Use and access status |
 | --- | --- |
+| [240hz/ApexConfigs file layout](https://github.com/240hz/ApexConfigs/tree/4088cb3e11b4853d83b9947e81ac8a41479d15f3) | Historical file paths and example key locations inspected at commit `4088cb3e11b4853d83b9947e81ac8a41479d15f3` (2019-06-05). Used for layout reference only; its old exec-chain instructions and tuning claims are not adopted, and it does not verify current compatibility |
 | [DominicKlmNL/apex-legends-config](https://github.com/DominicKlmNL/apex-legends-config) | Inspected README, configs, launcher guides, in-game guide, NVIDIA guide, and MIT license at commit `5d5ab6a0c93c3a9169b9f3c6f2d10e85b245f2b3` |
 | [Reddit post supplied by WR3K](https://www.reddit.com/r/apexlegends/comments/1w4ljsh/after_years_of_regularly_finetuning_my_pc_i/) | Reviewed the user-supplied transcript of the post and comments; direct retrieval returned HTTP 403. Community reports are not controlled benchmarks. |
 | [GoodTechMaster NVIDIA guide](https://www.goodtechmaster.com/ultimate-guide-nvidia-control-panel-optimization-for-gaming/) | Reviewed the user-supplied article text, dated August 12, 2022; direct retrieval returned HTTP 403. General driver guidance, not current Apex-specific validation. |
@@ -543,7 +591,7 @@ The upstream author labels many commands as working. Those labels are upstream c
 
 ### Deliberate differences
 
-- Include `hud_setting_adsDof "0"`, already present upstream, as WR3K's requested ADS blur preference. Do not invent a generic `dof 0` command.
+- Include `hud_setting_adsDof "0"`, already present upstream, in the profile merge fragment as WR3K's requested ADS blur preference. Do not invent a generic `dof 0` command.
 - Keep `mat_depthfeather_enable "0"` commented as a separate legacy experiment. Depth feathering is not interchangeable with ADS depth of field.
 - Leave the frame cap for hardware-specific selection instead of imposing upstream's 174 FPS target.
 - Provide a merge-only video config, retaining the user's display, VRAM budget, and client schema.
