@@ -1,5 +1,6 @@
-// MERGE FRAGMENT ONLY: do not replace your game-generated videoconfig.txt.
-// Follow README.md#video-config. Current Apex support is not verified here.
+// Only a few suggested settings, NOT a replacement for your full videoconfig.txt.
+// Edit matching lines in your original file: README.md#video-config.
+// These settings still need checking in the current game.
 // Adapted from Downie2k; see README.md#third-party.
 "VideoConfig"
 {
