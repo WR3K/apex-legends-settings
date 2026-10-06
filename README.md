@@ -567,6 +567,26 @@ Remove read-only from any file that needs editing, restart, and check that the o
 
 </details>
 
+<a id="bufferbloat"></a>
+
+<details>
+<summary><strong>Ping spikes when the internet is busy? Check bufferbloat</strong></summary>
+
+If Apex starts lagging when someone downloads, uploads, or streams, check for **bufferbloat**. That's extra network delay caused by data waiting in a queue when the connection is busy. It can affect ping even when your FPS is fine.
+
+1. Open the [Waveform Bufferbloat Test](https://www.waveform.com/tools/bufferbloat). Use Ethernet if possible and pause other downloads before starting—the test creates its own traffic.
+2. Run the test and compare **Unloaded** latency with the extra delay under **Download Active** and **Upload Active**. Smaller increases are better. Repeat it to check the result is consistent.
+3. If the grade is poor and latency jumps under load, check your router's app or settings for **SQM (Smart Queue Management)**. It helps keep the connection responsive while it's busy.
+4. If SQM is available, follow the router's instructions. If it asks for download/upload limits, around **90% of your measured speeds** is a starting point. Retest and adjust; you may trade some top speed for steadier ping.
+
+Can't find SQM? Check the router manual or ask the manufacturer/ISP. A setting called “QoS” isn't always the same thing. If the results are already good, there's no need to change anything.
+
+This tests your connection to Waveform, not the Apex server. It won't measure your FPS or fix every cause of lag.
+
+[Back to guides](#contents)
+
+</details>
+
 <a id="windows"></a>
 
 <details>
@@ -848,3 +868,7 @@ Eriksson. (2022, August 12). *Ultimate guide NVIDIA Control Panel – Optimizati
 <a id="ref-reddit"></a>
 
 gab0rik. (n.d.). *After years of regularly finetuning my pc, i decided to make an Apex Legends Config repository. (Incl. autoexec;videoconfig;nvidia settings;ingame settings; launch options)* [Online forum post]. Reddit. https://www.reddit.com/r/apexlegends/comments/1w4ljsh/after_years_of_regularly_finetuning_my_pc_i/
+
+<a id="ref-waveform"></a>
+
+Waveform. (n.d.). *Bufferbloat and Internet speed test*. https://www.waveform.com/tools/bufferbloat
