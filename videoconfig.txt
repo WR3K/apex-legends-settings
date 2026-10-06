@@ -1,6 +1,6 @@
 // MERGE FRAGMENT ONLY: do not replace your game-generated videoconfig.txt.
-// Follow docs/videoconfig.md. Current Apex support is not verified here.
-// Adapted from Downie2k; see THIRD_PARTY_NOTICES.md.
+// Follow README.md#video-config. Current Apex support is not verified here.
+// Adapted from Downie2k; see README.md#third-party.
 "VideoConfig"
 {
     "setting.mat_vsync_mode" "0"
