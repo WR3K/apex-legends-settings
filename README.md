@@ -318,6 +318,14 @@ Replace 174 with the target you chose in the [FPS-cap guide](#nvidia). For examp
 
 Keep the driver's Max Frame Rate setting off when using this cap. Setting the cap in one place makes troubleshooting easier.
 
+For a simple starting line with optional intro skipping:
+
+```text
+-novid +fps_max 174
+```
+
+Leave `-dev` out. If `-novid` doesn't skip the intro on your game version, remove it too. Choose FOV in the game's settings instead of putting a bare `cl_fovScale` command in this box.
+
 ### Example launch options shown in the screenshot
 
 ![Steam Apex Legends Properties, General tab, with the Launch Options box visible](assets/screenshots/steam-launch-options.png)
@@ -336,9 +344,17 @@ The screenshot shows this line exactly:
 | `-novid` | Intended to skip the intro video. Optional; remove it if ignored. It doesn't raise FPS during a match. |
 | `-dev` | An older developer-mode option often listed for skipping intros. Current intro-skipping support is unverified; leave it out of the starting setup. |
 | `cl_fovScale 1.7` | A field-of-view setting. As written, it lacks the `+` normally used to pass a console variable at startup, so don't assume it applies. Use Apex's FOV slider instead. |
-| `+mat_letterbox_aspect_min 1.0` | A legacy aspect-ratio / letterboxing override. Its effect in the current client is unverified; leave it out when starting at native resolution. |
+| `+mat_letterbox_aspect_min 1.0` | A legacy aspect-ratio / letterboxing override associated with stretched setups. Keep it only if you've checked that it makes the intended difference on your game version. Native-resolution users can leave it out. |
 
 The screenshot records an example setup; it doesn't prove every option works. The Reddit comments suggest trying `-novid` instead of `-dev` for intro skipping. Keep whichever optional changes you can actually confirm in your game.
+
+For the example **1440 × 1080 stretched** setup, this is a shorter line to compare if the letterboxing option works:
+
+```text
+-novid +fps_max 174 +mat_letterbox_aspect_min 1.0
+```
+
+That option alone doesn't set the resolution or guarantee stretching. Check the resolution in Apex and the display-scaling settings separately.
 
 [Back to guides](#contents)
 
@@ -517,6 +533,27 @@ If **G-SYNC/FreeSync is enabled but V-Sync is off**, the monitor can still adjus
 
 Use `+fps_max N` in the launcher, replacing `N` with the chosen FPS cap. Leave driver Max Frame Rate and third-party limiters off when testing the game cap. If Reflex already limits below the chosen target, that lower observed rate can be expected.
 
+### Should you raise the cap just because the monitor is 360 Hz?
+
+**Try the highest cap that stays smooth in actual fights.** If 170/174 is steady, try 180 next, then 190 or 200. Play several matches at each setting. Keep the higher cap if aiming still feels good and repeated drops or hitches haven't increased. If it feels worse, return to the previous cap.
+
+Here's why the FPS number matters:
+
+| FPS | Time between frames at a steady rate |
+| --- | --- |
+| 120 | 8.33 ms |
+| 170 | 5.88 ms |
+| 174 | 5.75 ms |
+| 180 | 5.56 ms |
+| 240 | 4.17 ms |
+| 359 | 2.79 ms |
+
+Higher FPS can reduce latency. A steady lower rate can feel more predictable than a rate that swings widely, so **170/174 can be a sensible choice when a higher cap makes fights feel uneven**. The small difference between 170 and 174 is a reason to test how they feel, rather than chase four extra frames.
+
+These numbers are frame intervals, not total input latency. A 170 FPS cap doesn't guarantee perfect 5.88 ms frames or stop a scene from falling to 120 FPS. An FPS counter also hides short hitches; use the [testing steps](#validation) when comparing caps.
+
+Reflex helps keep the render queue short. **Enabled + Boost** also aims to keep GPU clocks up, which can use more power and create more heat. Higher FPS can still help with Reflex enabled; compare the cap and Boost separately. Neither a 174 cap nor uncapped play is automatically the lowest-latency choice for every PC.
+
 [Back to guides](#contents)
 
 </details>
@@ -611,11 +648,16 @@ The [testing guide](#validation) explains how to compare runs without guessing.
 | GPU VRAM | 8 GB dedicated (RTX 3060 Ti); separate from the 32 GB system RAM |
 | Monitor | Alienware AW2724HF |
 | Monitor refresh | 360 Hz, selected on the example display-settings page |
-| Resolution | 1920 × 1080 (native), shown on the example display-settings page |
+| Desktop resolution | 1920 × 1080 (native), shown on the example display-settings page |
+| Apex resolution | 1440 × 1080 stretched, described in the example setup |
 | G-SYNC | Off |
+| V-Sync | Off in Apex and the NVIDIA Apex profile |
+| NVIDIA Reflex | Enabled + Boost, described in the example setup |
 | FPS cap | 174, set in Steam launch options |
 
-For this 1080p example, start with low shadows/effects, try a **4 GB texture budget** on the 8 GB graphics card, and keep **174 FPS** as the comparison point. These are starting settings to test, not a guarantee of holding 174 FPS in every fight:
+The monitor screenshot shows the desktop resolution; Apex can use a different resolution. Stretched resolution is a preference. Start at native resolution if you're unsure, and don't copy another player's FOV or scaling just to match this example.
+
+For this example, start with low shadows/effects, compare a **4 GB texture budget** on the 8 GB graphics card, and keep **174 FPS** as the comparison point. These are starting settings to test, not a guarantee of holding 174 FPS in every fight:
 
 ```text
 +fps_max 174
@@ -623,7 +665,7 @@ For this 1080p example, start with low shadows/effects, try a **4 GB texture bud
 
 Keep NVIDIA Max Frame Rate off when using the Steam cap. **A 360 Hz monitor can still be used with a 174 FPS cap.** Leave the monitor at 360 Hz; choose the game cap based on what the PC can hold. With G-SYNC and V-Sync off, tearing can still happen. You don't need to aim for 357 FPS just because the screen is 360 Hz.
 
-Start with in-game V-Sync off and Reflex Enabled. Compare Enabled + Boost while watching clocks and temperature. If 174 remains steady during demanding fights, compare a slightly higher target with identical captures; keep it only if pacing and responsiveness improve. If it repeatedly falls below 174, investigate the limiting component or try a lower cap. These example settings are for 1920 × 1080; test again if the resolution changes.
+The example uses Reflex Enabled + Boost. Other PCs can start with Enabled and compare Boost while watching temperatures. If 174 stays steady during demanding fights, **test 180 next** using the [cap comparison above](#nvidia). If it repeatedly falls below 174, investigate the limiting component or try a lower cap. Retest whenever you change resolution.
 
 The [NVIDIA table and screenshots](#nvidia-settings) show the rest of this example setup. Choose your own resolution, texture budget, and FPS cap using the steps above.
 
@@ -871,6 +913,7 @@ The upstream author labels many commands as working. Those labels are upstream c
 - Prefer menu controls and short saved-settings snippets. Omit unverified network/prediction, telemetry, threading, ragdoll, decal, and forced texture overrides.
 - Preserve personal mouse, audio, binds, FOV, and gameplay preferences; do not force upstream's 7.1 audio layout or autosprint.
 - Avoid mandatory read-only configs, high process priority, global driver changes, or routine cache deletion.
+- Leave the backbuffer setting written by the current game alone. Don't force `setting.mat_backbuffer_count` to `0` just because an old guide lists it.
 
 These choices keep the setup easier to understand and undo; they aren't benchmark results. See [validation](#validation) before claiming gains. Portions of the configuration are adapted from Downie2k's MIT-licensed work; the notice is retained in [third-party notice](#third-party). The existing project license is unchanged.
 
@@ -893,6 +936,7 @@ The Reddit discussion and NVIDIA article were reviewed from text copies after di
 | A Reddit user initially blames audio tweaks for stutter, then retracts that diagnosis | Do not claim audio tweaks caused or cured it; use repeatable before/after measurements |
 | The Reddit author links telemetry to wireless input problems | Treat this as an unmeasured anecdote; leave telemetry and texture eviction overrides out of the baseline |
 | GoodTechMaster recommends application-controlled AA/filtering and Auto threaded optimization | Retain those baseline choices |
+| NVIDIA's NVAPI header identifies Threaded optimization as `OGL_THREAD_CONTROL` | Recommend Auto; this OpenGL driver control isn't evidence of an Apex DirectX performance gain |
 | GoodTechMaster recommends High performance texture filtering for shooters | Keep it as an A/B option because motion shimmer and image quality also matter |
 | GoodTechMaster describes FPS caps mainly as a power-saving tool | Also account for GPU headroom, frame pacing, and staying within the monitor's supported G-SYNC/FreeSync range |
 | GoodTechMaster discusses driver Low Latency Mode without an Apex Reflex workflow | Prefer in-game Reflex; do not treat Ultra as an automatic FPS or smoothness improvement |
@@ -972,6 +1016,10 @@ Eriksson. (2022, August 12). *Ultimate guide NVIDIA Control Panel – Optimizati
 <a id="ref-reddit"></a>
 
 gab0rik. (n.d.). *After years of regularly finetuning my pc, i decided to make an Apex Legends Config repository. (Incl. autoexec;videoconfig;nvidia settings;ingame settings; launch options)* [Online forum post]. Reddit. https://www.reddit.com/r/apexlegends/comments/1w4ljsh/after_years_of_regularly_finetuning_my_pc_i/
+
+<a id="ref-nvapi"></a>
+
+NVIDIA. (n.d.). *NvApiDriverSettings.h* [Source code]. GitHub. https://github.com/NVIDIA/nvapi/blob/main/NvApiDriverSettings.h
 
 <a id="ref-waveform"></a>
 
