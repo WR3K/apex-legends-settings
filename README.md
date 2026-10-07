@@ -8,6 +8,7 @@
 <p align="center">
   <a href="#quick-setup"><strong>Quick start</strong></a> &middot;
   <a href="#downloads"><strong>Downloads</strong></a> &middot;
+  <a href="#nvidia-settings"><strong>NVIDIA table</strong></a> &middot;
   <a href="#contents"><strong>Guides</strong></a> &middot;
   <a href="#notes"><strong>Notes</strong></a> &middot;
   <a href="#references"><strong>References</strong></a>
@@ -29,11 +30,15 @@ Start with the screen and the game settings. You can do both without touching a 
 
 **Check your monitor's Hz before downloading anything.** A 144, 240, or 360 Hz monitor can still be running at 60 Hz if it hasn't been set up. Buying a faster screen doesn't mean Windows has selected the right refresh rate.
 
-1. **Check the refresh rate.** Right-click the desktop → **Display settings → Advanced display**. Select the monitor you play on, then choose its highest supported refresh rate at your intended resolution. Keep the change when Windows asks. [NVIDIA steps and missing refresh rates](#refresh-rate).
-2. **Set up Apex's graphics.** Take a screenshot of the current settings first. In **Settings → Video**, start at the resolution recommended for your monitor, lower shadows/effects, and enable **NVIDIA Reflex** if available. Keep your own sensitivity and binds. The [in-game table](#in-game) gives the individual settings.
-3. **Check sync and set your FPS cap.** On NVIDIA, open **Control Panel → Set up G-SYNC** and check whether the enable box is ticked. For AMD, check FreeSync in AMD Software. In Steam, open **Apex → Properties → General → Launch Options**. `+fps_max 170` is the example here, not a number everyone should use. [Choose a cap for your setup](#nvidia).
-4. **Play a few fights.** Watch for big FPS drops, stutters, and how aiming feels. Change one thing at a time so you know what helped. If it got worse, put that setting back.
-5. **Only then look at file edits.** Want to try the ADS blur setting or the other snippets? Close Apex, back up the original files, and follow the [Notepad walkthrough](#beginners). You don't have to use them to follow this guide.
+1. **Check the refresh rate.** Right-click the desktop → **Display settings → Advanced display**. Select the monitor you play on and its highest supported refresh rate at your intended resolution. [NVIDIA steps](#refresh-rate).
+2. **Check what's in your PC.** Press **Ctrl + Shift + Esc → Performance**. Click **CPU**, **Memory**, and **GPU** to find their names and memory sizes. [What to write down and what to choose](#hardware).
+3. **Set up the game and FPS cap.** Take screenshots of your current settings. Start with the [in-game settings](#in-game), then use the [hardware guide](#hardware) to pick a target your PC can hold. Check whether G-SYNC/FreeSync is enabled before following the [cap instructions](#nvidia).
+4. **Play a few fights.** Watch for repeated FPS drops, stutters, and how aiming feels. If a change makes it worse, put it back. A high firing-range number isn't the target.
+5. **File edits are optional.** Close Apex and back up the originals before trying a snippet. Once the graphics settings are finished, you can set **only `videoconfig.txt` to read-only**. Leave **`settings.cfg` and `profile.cfg` writable**, so volume, binds, and other preferences can save. [Read-only steps](#read-only).
+
+**Example: where to check your monitor's Hz in NVIDIA Control Panel.** This screen is set to 360 Hz at 1920 × 1080. Choose the resolution and refresh rate your own monitor supports.
+
+![NVIDIA Change resolution page showing the gaming monitor selected, native 1920 by 1080 resolution, and 360 Hz](assets/screenshots/nvidia-refresh-rate.png)
 
 ## Downloads
 
@@ -72,6 +77,8 @@ Need the full walkthrough? Open [Finding files, Notepad, and read-only](#beginne
 ## Guides
 
 **Open the section you need.** The detailed instructions stay folded away until you click them.
+
+[Monitor Hz](#refresh-rate) · [Read-only](#read-only) · [Steam launch options](#steam) · [NVIDIA settings table and screenshots](#nvidia-settings) · [Find your specs / choose settings](#hardware)
 
 
 ### 🖥️ Start with the monitor
@@ -116,6 +123,8 @@ Don't create a custom resolution or overclock the display just to make it match 
 
 In **NVIDIA Control Panel → Display → Set up G-SYNC**, select the gaming monitor and look at **Enable G-SYNC, G-SYNC Compatible**. The example screenshot has this box **unticked**. That shows the example uses G-SYNC off; it is not an instruction for everyone to disable it.
 
+![NVIDIA Set up G-SYNC page with Enable G-SYNC unticked in this example](assets/screenshots/nvidia-gsync.png)
+
 A missing, greyed-out, or “not validated” option doesn't prove G-SYNC is working. Check the monitor's support, its Adaptive-Sync setting, and the connection. If the panel asks for the monitor to be the primary display, check that selection too. Use the [G-SYNC/V-Sync guide](#nvidia) to choose the setup you want.
 
 The **Preferred refresh rate → Highest available** option in the Apex program profile is not a substitute for checking these display settings.
@@ -140,7 +149,7 @@ A config file is just a text file with settings in it. You can open it in Notepa
 | FPS | Frames the game produces each second; higher is useful when frames arrive consistently |
 | Hz | How often your monitor refreshes each second; a 360 Hz screen does not make the PC render 360 FPS |
 | Frame time | Time taken to produce a frame; sudden spikes feel like stutter |
-| FPS cap | A limit on how many frames the game tries to produce, such as `+fps_max 170`; your PC can still drop below it |
+| FPS cap | A limit on how many frames the game tries to produce, such as `+fps_max 174`; your PC can still drop below it |
 | Latency | Delay between an action and its visible result; network ping is a separate contributor to online responsiveness |
 | 1% low | A tool-dependent summary of the slowest frames; compare results using the same tool |
 | VRAM / RAM | GPU memory for graphics / system memory; 32 GB RAM does not mean 32 GB VRAM |
@@ -179,31 +188,49 @@ There are two destination folders: Saved Games `local` holds settings/video conf
 1. Close Apex. Copy each original file to a separate backup folder, such as `Documents\Apex-settings-backup`. Keep a screenshot or text copy of your existing launch options too.
 2. Right-click the file → **Open with → Notepad**. Windows 11 may show **Show more options**, **Edit in Notepad**, or **Choose another app** first.
 3. Edit only the intended lines. Preserve quotation marks and braces. Lines beginning with `//` in the snippets are comments explaining the settings.
-4. Press **Ctrl + S**. If saving fails, check the file's read-only attribute using the next section; do not change folder permissions blindly.
+4. Press **Ctrl + S**. If saving fails, check the file's [read-only attribute](#read-only); don't change folder permissions blindly.
 5. Edit the existing game-generated file rather than creating a replacement. If using **Save As**, choose **All files** and keep the original filename and extension. Verify it in File Explorer afterward.
 
 Keep your original files and edit only the matching lines. Don't overwrite your binds or personal preferences. For video settings, follow the [merge guide](#video-config): the repository's `videoconfig.txt` is deliberately incomplete and must not replace your full file.
 
-### Optional: set or remove read-only
-
-Leave Read-only unticked while you work out which settings you want. Once you're happy with them and have a backup, you can tick it to help stop the game saving over that file. This is optional.
-
-1. Close Apex and save the intended `videoconfig.txt` in Notepad.
-2. In File Explorer, right-click **that file** → **Properties**.
-3. On **General**, under **Attributes**, tick **Read-only**.
-4. Click **Apply → OK**. To edit or save new permanent settings later, untick it and click **Apply → OK** first.
-
-Use the file's checkbox, not the folder's checkbox. Do not mark the entire Apex folder read-only.
-
-#### What happens if you Apply graphics settings in game?
-
-**Read-only protects the file on disk; it does not lock live settings in the running game.** Pressing Apply can change graphics for the current session even if those values cannot be written to the read-only video config.
-
-After a full restart, Apex normally reads its saved files again. That doesn't guarantee every value comes back exactly as expected: some commands may no longer work, another settings file may override them, or cloud sync may restore different values. Check what actually loads.
-
-For a permanent change: close the game, remove read-only, edit the relevant file or apply settings in game, exit normally, inspect the saved values, and test another launch. Re-enable read-only only if you still want it. Remove read-only before troubleshooting resolution changes or letting a game update migrate the config schema.
+For optional protection of the saved graphics settings, see [Read-only: videoconfig.txt only](#read-only).
 
 Continue with [in-game settings](#in-game), [choosing settings for your PC](#hardware), and [validation](#validation).
+
+[Back to guides](#contents)
+
+</details>
+
+<a id="read-only"></a>
+
+<details>
+<summary><strong>Read-only: videoconfig.txt only — keep volume and binds editable</strong></summary>
+
+Read-only tells Windows that a file shouldn't be written over. For this guide, use it **only on `videoconfig.txt`**, and only if you want to keep the graphics settings you've finished testing. It is optional and doesn't increase FPS.
+
+| File | Read-only? | Why |
+| --- | --- | --- |
+| `videoconfig.txt` | Optional, after finishing graphics changes | Helps protect the saved graphics values |
+| `settings.cfg` | Leave unticked | Let binds, input settings, and other saved preferences update |
+| `profile.cfg` | Leave unticked | Let preferences such as volume and gameplay settings save normally |
+
+### How to set it
+
+1. Finish changing graphics in Apex, click **Apply**, and exit the game normally. Back up the saved file before any manual edits.
+2. If using the video snippet, edit the matching lines in your existing file and save in Notepad. Close it afterward.
+3. Press **Windows + R**, paste `%USERPROFILE%\Saved Games\Respawn\Apex\local`, and press Enter.
+4. Right-click **videoconfig.txt → Properties → General**.
+5. Under **Attributes**, tick **Read-only**, then click **Apply → OK**.
+
+Use the checkbox on the actual file, not the folder. If Windows hides extensions, it may show just `videoconfig`; **Type of file** should say **TXT File (.txt)**. Turn on filename extensions using the [beginner steps](#beginners) if unsure.
+
+### What if you change graphics in game afterward?
+
+**Read-only protects the saved file, not the running game.** Pressing Apply can still change how the current session looks. The game may be unable to save those changes to the protected file, so they may revert after restarting. Other saved settings or cloud sync can also affect what loads—check the result rather than assuming it stayed fixed.
+
+To keep a new graphics change: close Apex, untick **Read-only → Apply → OK**, change the settings, then exit normally so they save. Check the saved result before ticking it again. Leave it off while troubleshooting or letting a game update rewrite the file.
+
+If volume or binds keep reverting, check that **settings.cfg and profile.cfg are not read-only**. Keeping them writable avoids blocking those preference changes. The ADS blur edit doesn't require locking the whole profile file.
 
 [Back to guides](#contents)
 
@@ -233,7 +260,7 @@ Check that you've launched Apex using this Windows account. If Saved Games was m
 
 If the game hasn't created a particular key, skip it. Don't create a full settings file from the snippet or assume pasting the line somewhere else will make it work. The file locations and example keys also appear in an [older community reference](#ref-apexconfigs); the files your installed game creates are what you should work from.
 
-Leave settings/profile writable while testing, and usually afterward too, so your binds and preferences can save. Making them read-only won't improve FPS. The mouse-acceleration line is a preference, not a proven latency fix. These snippets haven't been tested in a running client for this guide.
+Leave **settings.cfg and profile.cfg writable** so volume, binds, and other preferences can save. If using read-only at all, [use it only for videoconfig.txt](#read-only). The mouse-acceleration line is a preference, not a proven latency fix. These snippets haven't been tested in a running client for this guide.
 
 [Back to guides](#contents)
 
@@ -264,7 +291,7 @@ The [download](videoconfig.txt) contains only four suggested settings. **Don't r
 
 These mappings come from the reference config and still need checking in the current game. If a value keeps changing back, it may have changed meaning or stopped being supported. Read-only won't fix that.
 
-Once you're happy with the settings, you can use the [optional read-only steps](#beginners). Leave the file writable while testing and when a game update needs to update its format. The ADS blur line belongs in the [profile snippet](#saved-configs), not this file.
+Once you're happy with the settings, you can use the [read-only steps for videoconfig.txt](#read-only). Leave the file writable while testing and when a game update needs to update its format. Keep settings.cfg and profile.cfg writable. The ADS blur line belongs in the [profile snippet](#saved-configs), not this file.
 
 [Back to guides](#contents)
 
@@ -281,27 +308,37 @@ In Steam, right-click **Apex Legends → Properties → General**. Find **Launch
 
 `+fps_max` sets the highest FPS the game should try to render. It doesn't guarantee the PC can hold that number.
 
-For the example 170 FPS setup:
+For the example 174 FPS setup:
 
 ```text
-+fps_max 170
++fps_max 174
 ```
 
-Replace 170 with the target you chose in the [FPS-cap guide](#nvidia). For example, 141 FPS is one starting point for a 144 Hz screen with G-SYNC enabled and driver V-Sync on. It isn't the right cap for every PC.
+Replace 174 with the target you chose in the [FPS-cap guide](#nvidia). For example, 141 FPS is one starting point for a 144 Hz screen with G-SYNC enabled and driver V-Sync on. It isn't the right cap for every PC.
 
 Keep the driver's Max Frame Rate setting off when using this cap. Setting the cap in one place makes troubleshooting easier.
 
-### Skipping the intro
+### Example launch options shown in the screenshot
 
-The Reddit comments suggest `-novid` after reporting that `-dev` stopped skipping the intro. You can try:
+![Steam Apex Legends Properties, General tab, with the Launch Options box visible](assets/screenshots/steam-launch-options.png)
+
+The screenshot shows this line exactly:
 
 ```text
--novid +fps_max 170
+-novid -dev +fps_max 174 cl_fovScale 1.7 +mat_letterbox_aspect_min 1.0
 ```
 
-Intro skipping is optional, not an FPS tweak. If the game ignores `-novid`, remove it.
+**You don't need all of these to follow the guide.** Start with `+fps_max 174`, replacing 174 with your chosen cap. Here's what the other parts are for:
 
-Leave `-high`, `-threads`, old renderer flags, and network overrides out of the starting setup. There's no demonstrated benefit for your PC just because another guide lists them.
+| Option shown | What to know |
+| --- | --- |
+| `+fps_max 174` | Requests a 174 FPS cap. Check the FPS display in game to see whether the PC holds it. |
+| `-novid` | Intended to skip the intro video. Optional; remove it if ignored. It doesn't raise FPS during a match. |
+| `-dev` | An older developer-mode option often listed for skipping intros. Current intro-skipping support is unverified; leave it out of the starting setup. |
+| `cl_fovScale 1.7` | A field-of-view setting. As written, it lacks the `+` normally used to pass a console variable at startup, so don't assume it applies. Use Apex's FOV slider instead. |
+| `+mat_letterbox_aspect_min 1.0` | A legacy aspect-ratio / letterboxing override. Its effect in the current client is unverified; leave it out when starting at native resolution. |
+
+The screenshot records an example setup; it doesn't prove every option works. The Reddit comments suggest trying `-novid` instead of `-dev` for intro skipping. Keep whichever optional changes you can actually confirm in your game.
 
 [Back to guides](#contents)
 
@@ -314,10 +351,10 @@ Leave `-high`, `-threads`, old renderer flags, and network overrides out of the 
 
 Open Apex's game properties/manage menu in the EA app. Find **Advanced launch options** or the similarly named field and save a copy of the existing arguments.
 
-To set an example 170 FPS cap, enter:
+To set an example 174 FPS cap, enter:
 
 ```text
-+fps_max 170
++fps_max 174
 ```
 
 Choose your own cap using the [FPS-cap guide](#nvidia). Keep the driver's Max Frame Rate setting off when using the game cap.
@@ -349,7 +386,7 @@ Open Apex's video settings and use this as a starting point. Menu names can chan
 | Adaptive resolution FPS target | 0 | Consistent resolution; dynamic resolution is an optional GPU-limited tradeoff |
 | Adaptive supersampling | Disabled | Avoid extra rendering load |
 | Anti-aliasing | None initially | TSAA may look smoother but softer; compare motion clarity |
-| Texture streaming budget | Start modestly within available VRAM | Increase for clarity if memory headroom permits; do not blindly choose None |
+| Texture streaming budget | Try 4 GB on an 8 GB graphics card | For other cards, use the [VRAM table](#texture-budget). Lower one step if stuttering gets worse |
 | Texture filtering | Bilinear initially | Compare 4×/8× for sharper surfaces and measured cost |
 | Ambient occlusion | Disabled | Less shading cost |
 | Sun shadow coverage / detail | Low | Lower shadow cost |
@@ -370,12 +407,85 @@ For hardware-specific starting points and how to check RAM versus VRAM, see [cho
 
 </details>
 
+<a id="nvidia-settings"></a>
+
+<details>
+<summary><strong>NVIDIA Control Panel: settings table and screenshots</strong></summary>
+
+Open **NVIDIA Control Panel → Manage 3D settings → Program Settings** and select Apex. This lets you change settings for Apex without changing every other game. If it isn't listed, use **Add / Browse** and select the game's actual executable from its install folder; the filename can change between game versions. Take a screenshot of the current settings first.
+
+### Apex program settings
+
+**Use the Program Settings tab and select Apex.** Global Settings affects other games too. The middle column below records the supplied screenshots; the last column tells you where to start on another PC.
+
+| NVIDIA setting | Example screenshot value | What to choose |
+| --- | --- | --- |
+| Image Scaling | Off | Off when using native resolution |
+| Ambient Occlusion | Not supported for this application | Leave it; use Apex's graphics menu |
+| Anisotropic filtering | Off | Application-controlled; choose filtering in Apex |
+| Antialiasing – FXAA | Off (inherited) | Off |
+| Antialiasing – Gamma correction | Off | Leave the default; no proven Apex FPS gain here |
+| Antialiasing – Mode / Setting | Off / None | Application-controlled where available |
+| Antialiasing – Transparency | Off | Off |
+| Background Application Max Frame Rate | Off (inherited) | Optional limit while the game is in the background |
+| CUDA – GPUs | All (inherited) | Leave the default |
+| CUDA – Sysmem Fallback Policy | Driver Default (inherited) | Leave the default |
+| Low Latency Mode | Off | Off with **NVIDIA Reflex Enabled** in Apex |
+| Max Frame Rate | Off (inherited) | Off when using `+fps_max` in launch options |
+| Monitor Technology | Fixed Refresh | Use the [G-SYNC / V-Sync guide](#nvidia) to choose |
+| Multi-Frame Sampled AA (MFAA) | Off (inherited) | Off |
+| OpenGL GDI compatibility | Auto (inherited) | Leave Auto; this isn't an Apex DirectX setting |
+| OpenGL rendering GPU | NVIDIA GPU (inherited) | Leave the default for Apex |
+| Power management mode | Prefer maximum performance | Start with Normal; compare maximum performance if GPU clocks keep dropping during play. It can use more power and produce more heat |
+| Preferred refresh rate | Highest available | Highest available; also [check the monitor's Hz](#refresh-rate) |
+| Texture filtering – Anisotropic sample optimization | On | Leave the default initially; compare image quality if changed |
+| Texture filtering – Negative LOD bias | Allow | Leave the default initially |
+| Texture filtering – Quality | High performance | Start with Quality; try High performance and check whether surfaces look too shimmery in motion |
+| Texture filtering – Trilinear optimization | On | Leave the default initially |
+| Threaded optimization | On | Auto; forcing On isn't an established Apex DirectX improvement |
+| Triple buffering | Off (inherited) | Off; this driver option is for OpenGL |
+| Vertical sync | Off | Off for this G-SYNC-off example; see the [sync guide](#nvidia) for other setups |
+| Virtual Reality pre-rendered frames | 1 (inherited) | Leave it; Apex isn't a VR game |
+| Virtual Reality – Variable Rate Super Sampling | Not supported for this application | Leave it |
+| Vulkan/OpenGL present method | Auto (inherited) | Leave Auto; Apex uses DirectX |
+
+“Inherited” means the screenshot says **Use global setting**. Driver versions can show different names or hide options. If an option is unavailable, skip it.
+
+### Screenshots provided for example — Apex profile
+
+Scroll down the settings list to see all three parts, then click **Apply** after making your changes. Click any image to open it at full size.
+
+![Apex NVIDIA program settings, part 1: image scaling, antialiasing, and CUDA](assets/screenshots/nvidia-apex-1.png)
+
+![Apex NVIDIA program settings, part 2: latency mode, frame cap, power, and refresh rate](assets/screenshots/nvidia-apex-2.png)
+
+![Apex NVIDIA program settings, part 3: texture filtering, threaded optimization, and V-Sync](assets/screenshots/nvidia-apex-3.png)
+
+<details>
+<summary><strong>Global Settings screenshots — for comparison</strong></summary>
+
+These show the example PC's global settings. **Make Apex changes in Program Settings**, so they don't change every other game.
+
+Notice **Low Latency Mode is On globally but Off in the Apex profile**. The Apex override is the one to follow when using Reflex. **Shader Cache Size is Unlimited** in these screenshots; Driver Default is a suitable starting point. A larger cache isn't a guaranteed stutter fix. Leave **DSR – Factors Off** for the starting setup; it renders above your chosen resolution and adds GPU work.
+
+![NVIDIA global settings, part 1: filtering and antialiasing](assets/screenshots/nvidia-global-1.png)
+
+![NVIDIA global settings, part 2: global latency mode, power, and shader cache](assets/screenshots/nvidia-global-2.png)
+
+![NVIDIA global settings, part 3: texture filtering and sync](assets/screenshots/nvidia-global-3.png)
+
+</details>
+
+Don't routinely delete shader caches. Give the game time to rebuild them after a game or driver update before judging stutter. See [notes](#notes) for why some recommendations differ from the linked guides.
+
+[Back to guides](#contents)
+
+</details>
+
 <a id="nvidia"></a>
 
 <details>
-<summary><strong>NVIDIA settings, G-SYNC / V-Sync, and FPS caps</strong></summary>
-
-Open **NVIDIA Control Panel → Manage 3D settings → Program Settings** and select Apex. This lets you change settings for Apex without changing every other game. If it isn't listed, use **Add / Browse** and select the game's actual executable from its install folder; the filename can change between game versions. Take a screenshot of the current settings first.
+<summary><strong>G-SYNC, V-Sync, and choosing an FPS cap</strong></summary>
 
 ### Which sync setup are you using?
 
@@ -401,37 +511,11 @@ If you use AMD FreeSync, the aim is also to stay within the refresh rates your m
 
 #### If G-SYNC/FreeSync is disabled and V-Sync is off
 
-Use a cap that gives repeatable, stable frame times on that PC. There is no automatic “refresh minus three” rule for this setup. The example 360 Hz screen with a 170 FPS cap belongs here. Try another cap the PC can hold if useful, but neither 170 nor an exact fraction such as 180 guarantees tear-free output: an FPS limiter alone does not synchronize frame delivery to the display.
+Use a cap that gives repeatable, stable frame times on that PC. There is no automatic “refresh minus three” rule for this setup. The example 360 Hz screen with a 174 FPS cap belongs here. Try another cap the PC can hold if useful, but neither 174 nor an exact fraction such as 180 guarantees tear-free output: an FPS limiter alone does not synchronize frame delivery to the display.
 
 If **G-SYNC/FreeSync is enabled but V-Sync is off**, the monitor can still adjust its refresh rate within its supported range. You may still see tearing, especially near the limits of that range. That's different from turning G-SYNC/FreeSync off completely. If both features are disabled and tearing is unacceptable, consider supported G-SYNC/FreeSync or ordinary V-Sync with its latency tradeoff.
 
 Use `+fps_max N` in the launcher, replacing `N` with the chosen FPS cap. Leave driver Max Frame Rate and third-party limiters off when testing the game cap. If Reflex already limits below the chosen target, that lower observed rate can be expected.
-
-### Other NVIDIA settings to start with
-
-| Setting | Recommendation | Reason |
-| --- | --- | --- |
-| Image Scaling (NIS) | Off at native resolution initially | Can enlarge a lower-resolution image to fit the screen; test the look and performance if the GPU is struggling |
-| DSR / DLDSR factors | Off to start with | Avoid rendering above native resolution for a performance-focused setup |
-| Driver Ambient Occlusion | Off | Use the game's own control |
-| Low Latency Mode | Off with in-game Reflex | Use the game's integrated latency control; do not assume stacking Ultra helps |
-| Max Frame Rate | Off when using the game limiter | Set the cap in one place so you know which setting controls it |
-| Preferred refresh rate | Highest available, if shown | Also select the intended refresh in Windows |
-| Power management | Normal initially | Test Prefer maximum performance per game if clocks fluctuate; watch heat |
-| Texture filtering – Quality | Quality initially | Try High performance if you want; keep it only if extra FPS is worth the change in how textures look |
-| Anisotropic filtering / antialiasing | Application-controlled | Change graphics through the game |
-| Driver FXAA / MFAA | Off initially | Avoid additional filtering overrides |
-| Threaded optimization | Auto | Do not assume an OpenGL driver option improves Apex's DirectX renderer |
-| Shader cache size | Driver default initially | Keep sufficient disk space; enlarge only for an identified cache issue |
-| Triple buffering | Default / Off | The OpenGL option is not an Apex latency tweak |
-
-Do not routinely delete shader caches. Warm up after a game or driver update before comparing stutter. Boost and maximum-performance power modes may increase power use; thermal throttling can erase their benefits. This repository does not apply global driver changes or import a driver profile automatically.
-
-### How the referenced NVIDIA article is used
-
-The GoodTechMaster article is dated 2022. Its application-controlled AA/filtering and Auto threaded-optimization recommendations fit this baseline. High performance texture filtering and larger shader caches remain optional comparisons, not guaranteed improvements. Its general Low Latency Mode discussion does not replace an Apex-specific Reflex setup, and frame caps can help frames arrive more evenly, keep G-SYNC/FreeSync within the display's supported range, and reduce power use. See [notes](#notes) for the differences.
-
-Example driver settings and the 170 FPS / G-SYNC-off configuration are discussed in the [hardware guide](#hardware). Use that as a worked example, not a universal profile.
 
 [Back to guides](#contents)
 
@@ -440,37 +524,82 @@ Example driver settings and the 170 FPS / G-SYNC-off configuration are discussed
 <a id="hardware"></a>
 
 <details>
-<summary><strong>Choose settings for your PC + example specs</strong></summary>
+<summary><strong>Find your CPU, GPU, and RAM — then choose settings and an FPS target</strong></summary>
 
 Start with what your PC is struggling with. The same graphics card might hold your target FPS at 1080p but struggle at 1440p. An expensive PC can still stutter because of heat, background apps, or the game preparing graphics data after an update.
 
-### Find your specifications
+### Find your CPU, RAM, and graphics card
 
-- Press **Ctrl + Shift + Esc → Performance** in Task Manager. CPU shows the processor model; Memory shows installed RAM; GPU shows the graphics card and dedicated GPU memory. Shared GPU memory is not equivalent to dedicated VRAM.
-- Check the screen's actual refresh rate in **Settings → System → Display → Advanced display**. The [monitor walkthrough](#refresh-rate) shows the steps and the NVIDIA alternative.
-- For NVIDIA, check **NVIDIA Control Panel → Set up G-SYNC**, if available, and your monitor's own Adaptive-Sync setting. A missing menu may depend on the display, connection, or GPU arrangement; do not assume all monitors support it.
+You don't need to install anything for this.
 
-### Pick a starting point
+1. Press **Ctrl + Shift + Esc** to open **Task Manager**. Click **More details** if needed, then **Performance**.
+2. Click **CPU**. Write down the full model name at the top, such as **AMD Ryzen 7 5700X3D**. “Ryzen 7” or “i7” on its own isn't enough; the generation and exact model matter.
+3. Click **Memory**. Write down the installed amount, such as **16 GB** or **32 GB**. This is **system RAM**. You can also note its speed and slots used, but don't change BIOS settings just to match someone else's numbers.
+4. Click **GPU**. Write down the full name and the capacity under **Dedicated GPU memory**. If it shows `2.1 / 8.0 GB`, the card has **8 GB** of dedicated memory; 2.1 GB is the amount in use.
+5. If there is **GPU 0** and **GPU 1**, inspect both. One may be integrated graphics. Don't assume GPU 0 is the faster card. On laptops, check that Apex uses the intended gaming GPU.
+6. Check **Windows Settings → System → Display → Advanced display** for the resolution and refresh rate. The [monitor walkthrough](#refresh-rate) shows both Windows and NVIDIA steps.
 
-| Situation | First useful change | What to watch |
+**RAM and VRAM are different.** RAM is memory for Windows and programs. VRAM is graphics memory on the GPU. Don't add “Shared GPU memory” to dedicated VRAM when choosing a texture budget. Integrated graphics use shared system memory and need a more cautious starting point.
+
+### What does each part affect?
+
+| Part | What it helps with | What to choose or check |
 | --- | --- | --- |
-| Entry-level GPU / limited VRAM | Low effects/shadows, modest texture budget; lower resolution if GPU limited | Texture pop-in, dedicated VRAM pressure, frame-time spikes |
-| Balanced midrange system | Native resolution, low shadows/effects, a cap the PC can hold, Reflex on NVIDIA | Busy-fight frame times and heat, not just range FPS |
-| High-end GPU / high-refresh display | Start with the same settings, then raise clarity settings with spare headroom | CPU limits, power/heat, and whether a higher cap stays stable |
-| Laptop / integrated GPU | Use the proper power adapter and intended GPU; reduce resolution if needed | Thermal/power limits; integrated graphics share system RAM |
-| High FPS but uneven motion | Try a cap the PC can hold and, if supported, the G-SYNC/FreeSync tear-free setup | Cap overshoot, recurring spikes, tearing, shader warmup |
+| CPU | Keeping up with game work, especially at high FPS and during busy fights | If lowering resolution doesn't help much, chasing lower graphics settings may not solve the limit |
+| GPU | Drawing the game at the chosen resolution and graphics quality | If lowering resolution clearly improves FPS, reduce resolution, shadows, or effects first |
+| VRAM | Holding textures and other graphics data | Pick a texture budget that leaves room for the rest of the game; see below |
+| System RAM | Giving Apex, Windows, and background apps enough working memory | With limited RAM, close unnecessary apps and check Memory usage during play. More RAM doesn't automatically produce more FPS once there is enough |
+| Monitor | How often the screen can update | Set its intended Hz, then choose a cap for the PC's performance and sync setup |
 
-For texture budget, select a menu value below dedicated VRAM capacity with room for render targets and other assets. On an 8 GB card, a 4 GB budget is a reasonable initial comparison, not a requirement or a total-VRAM limit. Smaller cards should start lower. Raise it if memory headroom and measured results allow; selecting None is not automatically the smoothest option.
+<a id="texture-budget"></a>
 
-### Is the CPU or graphics card holding FPS back?
+### What should Texture Streaming Budget be set to?
 
-If your PC is hitting its FPS cap, low CPU or GPU usage can be normal—it doesn't need to work harder. To investigate a limit, briefly raise the cap above the FPS you're getting and compare two resolutions in the same scene. Change nothing else, then restore the cap afterward.
+This controls how much graphics memory Apex sets aside for textures—the detail on things like walls, weapons, and characters. **Use your graphics card's VRAM, not your PC's RAM.** Check **Task Manager → Performance → GPU → Dedicated GPU memory**.
 
-- If lowering resolution gives a clear FPS increase and the graphics card was working hard, try reducing resolution, shadows, or other graphics settings.
-- If lowering resolution barely helps, check CPU load, temperatures, background apps, and other limits. Overall CPU usage can look low even when one part of the game's work is holding everything else up.
-- Don't decide from one usage number. Let the game warm up and repeat the comparison, including how smoothly the frames arrive.
+In Apex, open **Settings → Video → Texture Streaming Budget** and try:
 
-Choose a cap your PC can usually hold in busy fights. There is no need to match monitor Hz exactly, and a cap cannot prevent every hitch. If G-SYNC or FreeSync is enabled, use the [sync and FPS-cap guide](#nvidia). With those features disabled and V-Sync off, a below-refresh cap does not itself prevent tearing.
+| Your graphics card's memory | Setting to try first |
+| --- | --- |
+| 2 GB or less | Lowest available |
+| 4 GB | 2 GB |
+| 6 GB | 3 GB |
+| 8 GB | 4 GB |
+| 12 GB or more | 6 GB |
+
+**Example: an RTX 3060 Ti has 8 GB, so start with a 4 GB texture budget.** You don't need to select 8 GB just because the card has 8 GB; the game uses graphics memory for other things too.
+
+Play a few matches. If stuttering gets worse, drop one setting and compare. If it runs smoothly but you want sharper textures, try one setting higher. **None isn't automatically faster or smoother.** If your menu uses different values, choose the closest lower one. For integrated graphics without dedicated VRAM, start at the lowest setting.
+
+For **system RAM**, 8 GB leaves much less room for Windows and background apps than 16 or 32 GB. Close unnecessary apps and keep the page file system-managed. If 16 GB is already enough for the actual workload, moving to 32 GB isn't a guaranteed FPS upgrade.
+
+### Pick an FPS target, then see if the PC can hold it
+
+There isn't a reliable “this CPU + this GPU = this FPS” number without the resolution, game version, settings, and scene. Use the hardware info to choose what to lower, then use actual matches to choose the cap.
+
+| Target you want to try | Start with | If it won't hold |
+| --- | --- | --- |
+| Around 60–100 FPS | Low shadows/effects and a suitable texture budget; try native resolution first | Lower resolution if the GPU is struggling, or try a lower target |
+| Around 120–165 FPS | The same low graphics starting settings, Reflex on supported NVIDIA cards | Check whether the GPU or CPU is limiting performance before lowering everything |
+| Around 180–240 FPS or higher | A PC that can keep up at the selected resolution, with low costly effects | Expect more demand on both CPU and GPU; a high-refresh monitor alone won't make this achievable |
+
+These are **test targets**, not promises for low-, mid-, or high-end hardware. A laptop GPU can behave differently from a desktop card with a similar name because its power and cooling limits differ.
+
+1. Enable Apex's **Performance Display** in the game settings so you can see FPS. Warm up after an update, then play a few representative matches.
+2. Start with the target you want in Steam/EA launch options, for example `+fps_max 144`. **Replace the number for your PC**; it is a test target before applying the sync advice below.
+3. If it keeps dropping well below that target during normal fights, lower the relevant settings or the cap. For example, a game that spends busy fights around 130–150 FPS is a better candidate for trying 120 or 130 than forcing a 165 cap. One brief hitch is not enough to choose a new cap.
+4. If it stays at the cap comfortably, test the next higher target. Check how it feels and how evenly frames arrive, not just the peak number.
+5. Finally, apply the [G-SYNC/V-Sync cap guidance](#nvidia). With G-SYNC enabled and driver V-Sync on, stay below the monitor's maximum refresh rate; Reflex may already set a lower limit. With those features off, a cap by itself won't eliminate tearing.
+
+### Find what's holding the target back
+
+A cap makes the PC stop working harder once it reaches the target, so low GPU usage at the cap can be normal. For a short comparison, raise the cap above the FPS you're getting and lower the resolution in the same scene. Restore both settings afterward.
+
+- **FPS improves clearly:** the graphics card was likely a limit. Try lower resolution or GPU-heavy effects.
+- **FPS barely changes:** check CPU load, temperatures, background work, and other limits. Overall CPU usage can look low while one game thread is holding things up.
+- **FPS is high but there are hitches:** check frame-time captures, memory use, shader warmup, heat, and background work. Lowering the cap won't fix every cause.
+
+The [testing guide](#validation) explains how to compare runs without guessing.
 
 ### Example PC specifications and settings
 
@@ -479,33 +608,24 @@ Choose a cap your PC can usually hold in busy fights. There is no need to match 
 | CPU | AMD Ryzen 7 5700X3D |
 | GPU | NVIDIA GeForce RTX 3060 Ti |
 | System RAM | 32 GB |
+| GPU VRAM | 8 GB dedicated (RTX 3060 Ti); separate from the 32 GB system RAM |
 | Monitor | Alienware AW2724HF |
 | Monitor refresh | 360 Hz, selected on the example display-settings page |
 | Resolution | 1920 × 1080 (native), shown on the example display-settings page |
 | G-SYNC | Off |
-| FPS cap | 170, set in Steam launch options |
+| FPS cap | 174, set in Steam launch options |
 
-For this example, use 170 FPS as the comparison baseline:
+For this 1080p example, start with low shadows/effects, try a **4 GB texture budget** on the 8 GB graphics card, and keep **174 FPS** as the comparison point. These are starting settings to test, not a guarantee of holding 174 FPS in every fight:
 
 ```text
-+fps_max 170
++fps_max 174
 ```
 
-Keep NVIDIA Max Frame Rate off when using the Steam cap. A 170 FPS cap is valid on a 360 Hz monitor: it asks for a frame about every 5.88 ms, while the display refresh interval is about 2.78 ms. Those numbers are **not** total input latency, and fixed-refresh presentation can still tear or repeat frames unevenly. Do not switch to 357 FPS merely because the display is 360 Hz.
+Keep NVIDIA Max Frame Rate off when using the Steam cap. **A 360 Hz monitor can still be used with a 174 FPS cap.** Leave the monitor at 360 Hz; choose the game cap based on what the PC can hold. With G-SYNC and V-Sync off, tearing can still happen. You don't need to aim for 357 FPS just because the screen is 360 Hz.
 
-Start with in-game V-Sync off and Reflex Enabled. Compare Enabled + Boost while watching clocks and temperature. If 170 remains steady during demanding fights, compare a slightly higher target with identical captures; keep it only if pacing and responsiveness improve. If it repeatedly falls below 170, investigate the limiting component or try a lower cap. These example settings are for 1920 × 1080; test again if the resolution changes.
+Start with in-game V-Sync off and Reflex Enabled. Compare Enabled + Boost while watching clocks and temperature. If 174 remains steady during demanding fights, compare a slightly higher target with identical captures; keep it only if pacing and responsiveness improve. If it repeatedly falls below 174, investigate the limiting component or try a lower cap. These example settings are for 1920 × 1080; test again if the resolution changes.
 
-#### NVIDIA screenshots provided as examples
-
-Screenshots provided as examples show the Apex DX12 program profile, Fixed Refresh, highest available refresh, Low Latency Mode off, driver FPS cap off, V-Sync off, Prefer maximum performance, High performance texture filtering, sample/trilinear optimizations on, and Threaded optimization on. These are recorded settings, not measured improvements.
-
-- Low Latency Mode off fits the proposed in-game Reflex workflow; the screenshot cannot confirm Reflex is enabled inside Apex.
-- Keep your existing maximum-performance and texture-filtering choices as the baseline, then compare Normal power management and Quality filtering separately. Do not change several controls and attribute the result to one.
-- Return Threaded optimization to Auto as a general default; forcing this OpenGL-oriented option on is not an established DX12 Apex improvement. OpenGL GDI compatibility is likewise not a useful Apex tuning target.
-- Prefer application-controlled anisotropic filtering and antialiasing where supported, and choose their values in game. Controls marked unsupported for the application are not additional performance opportunities.
-- The separate Change resolution screenshot shows 1920 × 1080 at 360 Hz, and the Set up G-SYNC screenshot shows the enable box unticked. Check the same pages on your own PC using the [monitor walkthrough](#refresh-rate).
-
-Other readers should choose their own resolution, VRAM budget, cap, and presentation profile rather than copying this hardware example wholesale.
+The [NVIDIA table and screenshots](#nvidia-settings) show the rest of this example setup. Choose your own resolution, texture budget, and FPS cap using the steps above.
 
 [Back to guides](#contents)
 
